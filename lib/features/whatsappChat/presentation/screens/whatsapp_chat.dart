@@ -3,13 +3,24 @@ import 'package:get/get.dart';
 
 import '../../../../core/utils/ui.dart';
 import '../../../../core/widgets/mini_widgets.dart';
-import '../widgets/bottom_input.dart';
+import '../getX/bottom_input_controller.dart';
+import '../widgets/chat/bottom_input.dart';
+import '../widgets/chat/emojis_menu.dart';
+import '../widgets/chat/mic_button.dart';
 
-class WhatsAppChat extends StatelessWidget {
+class WhatsAppChat extends StatefulWidget {
   const WhatsAppChat({Key? key}) : super(key: key);
 
   @override
+  _WhatsAppChatState createState() => _WhatsAppChatState();
+}
+
+class _WhatsAppChatState extends State<WhatsAppChat> {
+  @override
   Widget build(BuildContext context) {
+    final bottomSpace = MediaQuery.of(context).viewInsets.bottom;
+    BottomInputController.to.assignBottomExtraSpace(bottomSpace);
+    BottomInputController.to.assignContext(context);
     return AnnotatedRegionCustom(
       child: Scaffold(
           body: SafeArea(
@@ -23,17 +34,13 @@ class WhatsAppChat extends StatelessWidget {
                 'assets/w/images/chat_bg.jpg',
                 fit: BoxFit.cover,
                 width: double.infinity,
+                height: context.height,
               ),
+              // Same piece
               BottomInput(),
-              if (false)
-                Positioned(
-                  bottom: 1,
-                  child: Container(
-                    width: context.width,
-                    height: context.height * 0.25,
-                    color: Colors.red,
-                  ),
-                )
+              MicButton(),
+              // Same piece
+              EmojisMenu(),
             ],
           )),
         ],
