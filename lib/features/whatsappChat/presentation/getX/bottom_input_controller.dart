@@ -3,6 +3,10 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/utils/routes.dart';
+import '../../../../core/widgets/dialogs/info_dialog.dart';
+import 'whatsapp_camera_controller.dart';
+
 const bottomSpace = 10.0;
 const defaultAnimation = Duration(milliseconds: 250);
 
@@ -64,5 +68,26 @@ class BottomInputController extends GetxController {
     Timer(Duration(milliseconds: 500), () {
       notifyChildrens();
     });
+  }
+
+  void onPressedCamera() async {
+
+    final result = await Get.toNamed(Routes.WHATSAPP_CAMARERA);
+
+    if (result == null) return;
+
+    String type;
+
+    switch (result) {
+      case Picked.picture:
+        type = 'Picture';
+        break;
+      case Picked.video:
+        type = 'Video';
+        break;
+      default:
+        throw UnimplementedError('Missing case');
+    }
+    Get.dialog(InfoDialog(description: 'You have choosed $type'));
   }
 }

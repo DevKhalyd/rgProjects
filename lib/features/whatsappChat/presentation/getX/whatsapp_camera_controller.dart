@@ -1,16 +1,23 @@
+import 'dart:async';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/core/widgets/dialogs/info_dialog.dart';
-import 'package:rg_projects/core/widgets/mini_widgets.dart';
+
+import '../../../../core/widgets/dialogs/info_dialog.dart';
+import '../../../../core/widgets/mini_widgets.dart';
+
+import 'dart:io' show Platform;
 
 const _staticDimension = 80.0;
 
+enum Picked { picture, video }
+
 class WhatsAppCameraController extends GetxController {
+  static WhatsAppCameraController get to => Get.find();
+
   CameraController? controller;
   List<CameraDescription>? cameras;
-
-  static WhatsAppCameraController get to => Get.find();
 
   int _cameraPosition = 0;
   double _dimensionSquare = 80.0;
@@ -104,15 +111,25 @@ class WhatsAppCameraController extends GetxController {
     }
   }
 
-  onLongPressCamera() {
+  /// When the user wants to pic a photo
+  onTapCamera() async {
+    await controller!.takePicture();
+    Timer(Duration(milliseconds: 1250), () => Get.back(result: Picked.picture));
+  }
+
+  onLongPressCamera() async {
     _dimensionSquare = _staticDimension + 20;
     _isRecording = true;
     update();
+    if (Platform.isIOS) await controller!.prepareForVideoRecording();
+    await controller!.startVideoRecording();
   }
 
-  onLongPressEndCamera(LongPressEndDetails _) {
+  onLongPressEndCamera(_) async {
     _dimensionSquare = _staticDimension;
     _isRecording = false;
     update();
+    await controller!.stopVideoRecording();
+    Timer(Duration(milliseconds: 750), () => Get.back(result: Picked.video));
   }
 }

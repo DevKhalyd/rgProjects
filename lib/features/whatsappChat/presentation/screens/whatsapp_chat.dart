@@ -36,10 +36,8 @@ class _WhatsAppChatState extends State<WhatsAppChat> {
                 width: double.infinity,
                 height: context.height,
               ),
-              // Same piece
               BottomInput(),
               MicButton(),
-              // Same piece
               EmojisMenu(),
             ],
           )),

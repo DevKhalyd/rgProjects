@@ -2,10 +2,11 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/features/whatsappChat/presentation/getX/bottom_input_controller.dart';
+import 'package:rg_projects/features/whatsappChat/presentation/widgets/customGallery/custom_gallery.dart';
 
 import '../../../../core/utils/colors.dart';
 import '../../../../core/widgets/mini_widgets.dart';
+import '../getX/bottom_input_controller.dart';
 import '../getX/whatsapp_camera_controller.dart';
 import '../widgets/camera/camera_space.dart';
 
@@ -26,6 +27,7 @@ class WhatsAppCamarera extends StatelessWidget {
               CameraSpace(),
               TimerRecording(),
               CameraItems(),
+              CustomGallery(),
             ],
           )),
     );
@@ -91,12 +93,7 @@ class CameraItems extends StatelessWidget {
       builder: (c) {
         return Column(
           children: [
-            Spacer(flex: 7),
-            // TODO: End this one
-            Expanded(
-                child: Container(
-              color: Colors.transparent,
-            )),
+            Spacer(flex: 8),
             Expanded(
                 flex: 2,
                 child: Column(
@@ -114,6 +111,7 @@ class CameraItems extends StatelessWidget {
                               color: Colors.white,
                             )),
                         GestureDetector(
+                          onTap: c.onTapCamera,
                           onLongPress: c.onLongPressCamera,
                           onLongPressEnd: c.onLongPressEndCamera,
                           child: AnimatedContainer(

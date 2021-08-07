@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../../../../../core/utils/colors.dart';
-import '../../../../../core/utils/routes.dart';
 import '../../getX/bottom_input_controller.dart';
 
 class BottomInput extends StatelessWidget {
@@ -54,7 +53,7 @@ class BottomInput extends StatelessWidget {
                 ),
               ),
               IconButton(
-                  onPressed: () => Get.toNamed(Routes.WHATSAPP_CAMARERA),
+                  onPressed: c.onPressedCamera,
                   icon: Icon(
                     Icons.camera,
                     color: Colors.grey,
