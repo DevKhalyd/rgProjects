@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +15,8 @@ enum Picked { picture, video }
 class WhatsAppCameraController extends GetxController {
   static WhatsAppCameraController get to => Get.find();
 
-  CameraController? controller;
-  List<CameraDescription>? cameras;
+  CameraController? _controller;
+  List<CameraDescription>? _cameras;
 
   int _cameraPosition = 0;
   double _dimensionSquare = 80.0;
@@ -26,6 +25,7 @@ class WhatsAppCameraController extends GetxController {
 
   FlashMode get flashMode => _flashMode;
   double get dimensionSquare => _dimensionSquare;
+  CameraController? get controller => _controller;
 
   /// If the buttons should be visible when the camera button is pressed
   bool get isRecording => _isRecording;
@@ -49,11 +49,11 @@ class WhatsAppCameraController extends GetxController {
         );
         return;
       }
-      cameras = cams;
-      controller =
-          CameraController(cameras![_cameraPosition], ResolutionPreset.max);
-      controller!.initialize().then((value) {
-        controller!.setFlashMode(FlashMode.off);
+      _cameras = cams;
+      _controller =
+          CameraController(_cameras![_cameraPosition], ResolutionPreset.max);
+      _controller!.initialize().then((value) {
+        _controller!.setFlashMode(FlashMode.off);
         update();
       });
     });
@@ -62,12 +62,12 @@ class WhatsAppCameraController extends GetxController {
 
   @override
   void onClose() {
-    controller!.dispose();
+    _controller!.dispose();
     super.onClose();
   }
 
   onSwitchCamera() {
-    if (cameras!.length < 2) {
+    if (_cameras!.length < 2) {
       Get.dialog(InfoDialog(description: 'No camera available'));
       return;
     }
@@ -75,9 +75,9 @@ class WhatsAppCameraController extends GetxController {
       _cameraPosition = 1;
     else
       _cameraPosition = 0;
-    controller =
-        CameraController(cameras![_cameraPosition], ResolutionPreset.max);
-    controller!.initialize().then((_) => update());
+    _controller =
+        CameraController(_cameras![_cameraPosition], ResolutionPreset.max);
+    _controller!.initialize().then((_) => update());
   }
 
   onSwitchFlashMode() {
@@ -94,7 +94,7 @@ class WhatsAppCameraController extends GetxController {
       default:
         throw UnimplementedError('Missing FlashMode');
     }
-    controller!.setFlashMode(_flashMode);
+    _controller!.setFlashMode(_flashMode);
     update();
   }
 
@@ -112,24 +112,24 @@ class WhatsAppCameraController extends GetxController {
   }
 
   /// When the user wants to pic a photo
-  onTapCamera() async {
-    await controller!.takePicture();
-    Timer(Duration(milliseconds: 1250), () => Get.back(result: Picked.picture));
+  onTapCamera({bool takePicture = true}) async {
+    if (takePicture) _controller!.takePicture();
+    Get.back(result: Picked.picture);
   }
 
   onLongPressCamera() async {
     _dimensionSquare = _staticDimension + 20;
     _isRecording = true;
     update();
-    if (Platform.isIOS) await controller!.prepareForVideoRecording();
-    await controller!.startVideoRecording();
+    if (Platform.isIOS) await _controller!.prepareForVideoRecording();
+    await _controller!.startVideoRecording();
   }
 
   onLongPressEndCamera(_) async {
     _dimensionSquare = _staticDimension;
     _isRecording = false;
     update();
-    await controller!.stopVideoRecording();
-    Timer(Duration(milliseconds: 750), () => Get.back(result: Picked.video));
+    _controller!.stopVideoRecording();
+    Get.back(result: Picked.video);
   }
 }

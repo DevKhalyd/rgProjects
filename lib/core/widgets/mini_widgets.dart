@@ -123,3 +123,17 @@ class AnnotatedRegionCustom extends StatelessWidget {
     );
   }
 }
+
+class CircularProgressCustom extends StatelessWidget {
+  const CircularProgressCustom({required this.color});
+
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) => Center(
+        child: CircularProgressIndicator(
+          valueColor: new AlwaysStoppedAnimation<Color>(color),
+          strokeWidth: 2.5,
+        ),
+      );
+}

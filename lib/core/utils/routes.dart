@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../features/home/presentation/home.dart';
 import '../../features/whatsappChat/presentation/bindings/camera_binding.dart';
 import '../../features/whatsappChat/presentation/bindings/chat_binding.dart';
-import '../../features/whatsappChat/presentation/screens/whatsapp_camarera.dart';
+import '../../features/whatsappChat/presentation/screens/whatsapp_camera.dart';
 import '../../features/whatsappChat/presentation/screens/whatsapp_chat.dart';
 
 abstract class Routes {

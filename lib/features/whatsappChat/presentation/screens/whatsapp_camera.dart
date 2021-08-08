@@ -2,13 +2,13 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/features/whatsappChat/presentation/widgets/customGallery/custom_gallery.dart';
 
 import '../../../../core/utils/colors.dart';
 import '../../../../core/widgets/mini_widgets.dart';
 import '../getX/bottom_input_controller.dart';
 import '../getX/whatsapp_camera_controller.dart';
 import '../widgets/camera/camera_space.dart';
+import '../widgets/customGallery/camera.dart';
 
 class WhatsAppCamarera extends StatelessWidget {
   const WhatsAppCamarera({Key? key}) : super(key: key);
@@ -26,8 +26,7 @@ class WhatsAppCamarera extends StatelessWidget {
             children: [
               CameraSpace(),
               TimerRecording(),
-              CameraItems(),
-              CustomGallery(),
+              CameraActions(),
             ],
           )),
     );
@@ -82,6 +81,7 @@ class TimerRecording extends StatelessWidget {
   }
 }
 
+@deprecated
 class CameraItems extends StatelessWidget {
   const CameraItems({
     Key? key,
@@ -152,7 +152,6 @@ class CameraItems extends StatelessWidget {
                       ],
                     ),
                     Space(0.02),
-                    // if (c.shouldBeVisible)
                     TextCustom(
                       'Hold for video, tap for photo',
                       color: Colors.white,

@@ -1,7 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/features/whatsappChat/presentation/getX/whatsapp_camera_controller.dart';
+
+import '../../getX/whatsapp_camera_controller.dart';
 
 class CameraSpace extends StatelessWidget {
   const CameraSpace({Key? key}) : super(key: key);
