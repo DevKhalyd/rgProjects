@@ -8,7 +8,6 @@ class Log {
   static final _printerDefault = PrettyPrinter(
       colors: true, // Colorful log messages
       printEmojis: true, // Print an emoji for each log message
-      printTime: true, // Should each log print contain a timestamp
       methodCount: 0);
 
   static final _printer = PrettyPrinter(

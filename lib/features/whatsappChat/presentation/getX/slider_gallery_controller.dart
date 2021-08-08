@@ -1,11 +1,16 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/debouncer.dart';
 
 import '../../../../core/utils/logger.dart';
+
+const _debouncerMilliseconds = 20;
 
 /// Handle the gallery menu in the phone
 class SliderGalleryController extends GetxController {
   static SliderGalleryController get to => Get.find();
+
+  final _d = Debouncer(milliseconds: _debouncerMilliseconds);
 
   /// The _maxHeight in the screen
   late double _maxHeight;
@@ -67,65 +72,107 @@ class SliderGalleryController extends GetxController {
     update();
   }
 
-  void onLongPressMoveUpdate(LongPressMoveUpdateDetails d) {
-    //NOTE: Check if this one is used
-    //final minDy = _assignDyIfNeeded(dy);
-    final globalPosition = d.globalPosition;
-    final dy = globalPosition.dy;
-    final lastDy = _lastDy ?? dy;
+  double? lastDyUsed;
 
-    /// This value can be positive or negative
-    double extraHeight = 0;
+  /// The minDy to use in the animation
+  double? minDy;
 
-    Log.console(dy);
+  void onVerticalDragUpdate(DragUpdateDetails d) {
+    final localOffsetFromOrigin = d.localPosition;
+    final dyGlobal = d.globalPosition.dy;
+
+    /// Dy in number positive
+    ///
+    /// When goes up means the the slider is moving up
+    ///
+    /// otherwise is moving down
+    final dy = (localOffsetFromOrigin.dy) * -1;
+    final lastDy = lastDyUsed ?? dy;
+    // First time
+    if (minDy == null)
+      minDy = dy;
+    else if (dy < minDy!) minDy = dy;
+
+    final useMinDy = minDy!;
+
+    // Limits
+    if (dyGlobal <= _paddingTop || dy <= useMinDy) return;
+
+    double spaceToAdd = 0;
+
+    final isGoingUp = dy > lastDy;
+    final isGoingDown = dy < lastDy;
 
     // Going up
-    if (dy < lastDy)
-      extraHeight = 2.7;
+    if (isGoingUp) {
+      final space = dy - lastDy;
+
+      if (space < 3.0) {
+        _assignAnimationDuration(20);
+      } else {
+        _assignAnimationDuration(100);
+      }
+      spaceToAdd = space;
+
+      if (space > 200) spaceToAdd /= space;
+    }
     // Going down
-    else if (dy > lastDy) extraHeight = -2.7;
+    else if (isGoingDown) {
+      final space = lastDy - dy;
+      if (space < 3.0) {
+        _assignAnimationDuration(20);
+      } else {
+        _assignAnimationDuration(100);
+      }
+      spaceToAdd = space * -1;
 
-    if (_lastDy != null) if (lastDy == dy) return;
+      // Sometimes add some extra space
+      if (spaceToAdd < -200) spaceToAdd /= space;
+    }
 
-    _updateSlider(extraHeight);
-    _assignLastDyUsed(dy);
+    if (isGoingUp) {
+      if (_currentSliderHeight < _maxSliderHeight) {
+        _currentSliderHeight += spaceToAdd;
+        update();
+      }
+    }
+
+    if (isGoingDown) {
+      if (_currentSliderHeight > _minSliderHeight) {
+        _currentSliderHeight += spaceToAdd;
+        update();
+      }
+    }
+
+    // The lastAction to do
+    lastDyUsed = dy;
   }
 
-  void onLongPressEnd(LongPressEndDetails d) {
+  void onVerticalDragEnd(DragEndDetails d) {
     if (!_isNeitherState) return;
 
     final distanceTop = _maxSliderHeight - _currentSliderHeight;
 
     final distanceBottom = _currentSliderHeight - _minSliderHeight;
-    if (distanceTop >= distanceBottom)
-      _currentSliderHeight = _minSliderHeight;
-    else
-      _currentSliderHeight = _maxSliderHeight;
-    update();
-  }
 
-  _updateSlider(double v) {
-    if (v == 0) return;
-    _currentSliderHeight += v;
-    if (_currentSliderHeight <= _minSliderHeight + 25 ||
-        _currentSliderHeight >= _maxSliderHeight) return;
+    if (distanceTop >= distanceBottom) {
+      if (distanceTop > 250) {
+        _assignAnimationDuration(300);
+      } else
+        _assignAnimationDuration(100);
+
+      _currentSliderHeight = _minSliderHeight;
+    } else {
+      if (distanceBottom > 250) {
+        _assignAnimationDuration(300);
+      } else
+        _assignAnimationDuration(100);
+
+      _currentSliderHeight = _maxSliderHeight;
+    }
     update();
   }
 
   _assignAnimationDuration(int milliseconds) =>
       _animationDuration = Duration(milliseconds: milliseconds);
-
-  /// Just assign the `_minDy`
-  /// and then return the current value of `_minDy`
-  double _assignDyIfNeeded(double dy) {
-    if (_minDy == null) {
-      _minDy = dy;
-      return _minDy!;
-    }
-    if (dy > _minDy!) _minDy = dy;
-    return _minDy!;
-  }
-
-  /// Assign the `_lastDy` used
-  _assignLastDyUsed(double dy) => _lastDy = dy;
 }
