@@ -1,8 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/core/utils/debouncer.dart';
-
-import '../../../../core/utils/logger.dart';
 
 const _debouncerMilliseconds = 20;
 
@@ -10,42 +7,29 @@ const _debouncerMilliseconds = 20;
 class SliderGalleryController extends GetxController {
   static SliderGalleryController get to => Get.find();
 
-  final _d = Debouncer(milliseconds: _debouncerMilliseconds);
-
   /// The _maxHeight in the screen
   late double _maxHeight;
 
   /// The _status bar size
   late double _paddingTop;
 
-  /// The lesser value of the dy
-  ///
-  /// Example: 600 could be the min and the max could be 100 or less
-  double? _minDy;
+  double? lastDyUsed;
 
-  /// The last dy used in the LongPressMovedUp
-  double? _lastDy;
+  /// The minDy to use in the animation
+  double? minDy;
 
   Duration _animationDuration = Duration(milliseconds: 300);
 
   // NOTE: IF the space needed to change is greater than 4 the time should change
   Duration get animationDuration => _animationDuration;
 
-  double get _minSliderHeight {
-    return _maxHeight * .33;
-  }
+  double get minSliderHeight => _maxHeight * .33;
 
-  double get _maxSliderHeight {
-    return _maxHeight - _paddingTop;
-  }
+  double get maxSliderHeight => _maxHeight - _paddingTop;
 
-  bool get _isClosedSlider {
-    return _currentSliderHeight == _minSliderHeight;
-  }
+  bool get _isClosedSlider => _currentSliderHeight == minSliderHeight;
 
-  bool get _isOpenSlider {
-    return _currentSliderHeight == _maxSliderHeight;
-  }
+  bool get _isOpenSlider => _currentSliderHeight == maxSliderHeight;
 
   /// No open and not closed.
   ///
@@ -60,22 +44,17 @@ class SliderGalleryController extends GetxController {
   void initValues({required double mH, required double pT}) {
     _maxHeight = mH;
     _paddingTop = pT;
-    _currentSliderHeight = _minSliderHeight;
+    _currentSliderHeight = minSliderHeight;
   }
 
   void onTap() {
     _assignAnimationDuration(400);
-    if (_currentSliderHeight == _maxSliderHeight)
-      _currentSliderHeight = _minSliderHeight;
-    else if (_currentSliderHeight == _minSliderHeight)
-      _currentSliderHeight = _maxSliderHeight;
+    if (_currentSliderHeight == maxSliderHeight)
+      _currentSliderHeight = minSliderHeight;
+    else if (_currentSliderHeight == minSliderHeight)
+      _currentSliderHeight = maxSliderHeight;
     update();
   }
-
-  double? lastDyUsed;
-
-  /// The minDy to use in the animation
-  double? minDy;
 
   void onVerticalDragUpdate(DragUpdateDetails d) {
     final localOffsetFromOrigin = d.localPosition;
@@ -131,14 +110,14 @@ class SliderGalleryController extends GetxController {
     }
 
     if (isGoingUp) {
-      if (_currentSliderHeight < _maxSliderHeight) {
+      if (_currentSliderHeight < maxSliderHeight) {
         _currentSliderHeight += spaceToAdd;
         update();
       }
     }
 
     if (isGoingDown) {
-      if (_currentSliderHeight > _minSliderHeight) {
+      if (_currentSliderHeight > minSliderHeight) {
         _currentSliderHeight += spaceToAdd;
         update();
       }
@@ -151,9 +130,9 @@ class SliderGalleryController extends GetxController {
   void onVerticalDragEnd(DragEndDetails d) {
     if (!_isNeitherState) return;
 
-    final distanceTop = _maxSliderHeight - _currentSliderHeight;
+    final distanceTop = maxSliderHeight - _currentSliderHeight;
 
-    final distanceBottom = _currentSliderHeight - _minSliderHeight;
+    final distanceBottom = _currentSliderHeight - minSliderHeight;
 
     if (distanceTop >= distanceBottom) {
       if (distanceTop > 250) {
@@ -161,14 +140,14 @@ class SliderGalleryController extends GetxController {
       } else
         _assignAnimationDuration(100);
 
-      _currentSliderHeight = _minSliderHeight;
+      _currentSliderHeight = minSliderHeight;
     } else {
       if (distanceBottom > 250) {
         _assignAnimationDuration(300);
       } else
         _assignAnimationDuration(100);
 
-      _currentSliderHeight = _maxSliderHeight;
+      _currentSliderHeight = maxSliderHeight;
     }
     update();
   }

@@ -1,7 +1,8 @@
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/logger.dart';
+import 'package:rg_projects/features/whatsappChat/presentation/getX/slider_gallery_controller.dart';
 
 import '../../../../core/widgets/dialogs/info_dialog.dart';
 import '../../../../core/widgets/mini_widgets.dart';
@@ -15,6 +16,8 @@ enum Picked { picture, video }
 class WhatsAppCameraController extends GetxController {
   static WhatsAppCameraController get to => Get.find();
 
+  double _currentSliderHeight = SliderGalleryController.to.currentSliderHeight;
+
   CameraController? _controller;
   List<CameraDescription>? _cameras;
 
@@ -22,6 +25,11 @@ class WhatsAppCameraController extends GetxController {
   double _dimensionSquare = 80.0;
   FlashMode _flashMode = FlashMode.off;
   bool _isRecording = false;
+
+  double get opacity {
+    Log.console('Before opacity: $_currentSliderHeight');
+    return _currentSliderHeight.clamp(0.0, 1.0);
+  }
 
   FlashMode get flashMode => _flashMode;
   double get dimensionSquare => _dimensionSquare;
