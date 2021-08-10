@@ -140,4 +140,6 @@ class WhatsAppCameraController extends GetxController {
     _controller!.stopVideoRecording();
     Get.back(result: Picked.video);
   }
+
+  double getOpacity() => SliderGalleryController.to.getOpacity();
 }

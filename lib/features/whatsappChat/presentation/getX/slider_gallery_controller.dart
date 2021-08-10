@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-const _debouncerMilliseconds = 20;
-
 /// Handle the gallery menu in the phone
 class SliderGalleryController extends GetxController {
   static SliderGalleryController get to => Get.find();
@@ -47,6 +45,7 @@ class SliderGalleryController extends GetxController {
     _currentSliderHeight = minSliderHeight;
   }
 
+  /// Close or open the current slider
   void onTap() {
     _assignAnimationDuration(400);
     if (_currentSliderHeight == maxSliderHeight)
@@ -154,4 +153,15 @@ class SliderGalleryController extends GetxController {
 
   _assignAnimationDuration(int milliseconds) =>
       _animationDuration = Duration(milliseconds: milliseconds);
+
+  /// Get the opacity according to the user pointer
+  ///
+  /// From 0.0  to 1.0
+  double getOpacity() {
+    final maxNumber = maxSliderHeight - minSliderHeight;
+
+    final percentage = (currentSliderHeight - minSliderHeight) / maxNumber;
+
+    return percentage.clamp(0.0, 1.0);
+  }
 }

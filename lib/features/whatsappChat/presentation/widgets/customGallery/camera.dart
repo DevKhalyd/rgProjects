@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide Actions;
 import 'package:get/get.dart' hide ContextExtensionss;
+import 'package:rg_projects/core/utils/durations.dart';
 
 import '../../../../../core/extensions/build_context_ext.dart';
 import '../../../../../core/utils/colors.dart';
@@ -9,6 +10,7 @@ import '../../getX/custom_gallery_controller.dart';
 import '../../getX/slider_gallery_controller.dart';
 import '../../getX/whatsapp_camera_controller.dart';
 import 'actions.dart';
+import 'gallery_expanded.dart';
 import 'img_gallery.dart';
 
 /// Show the latest photos and the actions to take a picture...
@@ -31,14 +33,10 @@ class CameraActions extends StatelessWidget {
           child: AnimatedContainer(
             duration: c.animationDuration,
             width: context.width,
-            height: c.currentSliderHeight,
+            height: c.currentSliderHeight
+                .clamp(c.minSliderHeight, c.maxSliderHeight),
             curve: Curves.easeIn,
-            child: Column(
-              children: [
-                SliderGallery(),
-                Actions(),
-              ],
-            ),
+            child: _Actions(),
           ),
         );
       },
@@ -46,8 +44,8 @@ class CameraActions extends StatelessWidget {
   }
 }
 
-class SliderGallery extends StatelessWidget {
-  const SliderGallery({
+class _Actions extends StatelessWidget {
+  const _Actions({
     Key? key,
   }) : super(key: key);
 
@@ -55,11 +53,33 @@ class SliderGallery extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SliderGalleryController>(
       builder: (c) {
+        final currentOpacity = 1.0 - c.getOpacity();
+
         return GestureDetector(
           onTap: c.onTap,
           onVerticalDragEnd: c.onVerticalDragEnd,
           onVerticalDragUpdate: c.onVerticalDragUpdate,
-          child: _Gallery(),
+          child: Stack(
+            children: [
+              // Expanend actions
+              AnimatedOpacity(
+                opacity: c.getOpacity(),
+                duration: Durations.fiftyMilliseconds,
+                child: GalleryExpanded(),
+              ),
+              // Collapsed actions
+              AnimatedOpacity(
+                opacity: currentOpacity,
+                duration: Durations.fiftyMilliseconds,
+                child: Column(
+                  children: [
+                    _Gallery(),
+                    Actions(),
+                  ],
+                ),
+              )
+            ],
+          ),
         );
       },
     );
