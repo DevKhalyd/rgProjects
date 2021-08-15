@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/durations.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../getX/bottom_input_controller.dart';
@@ -11,7 +12,7 @@ class MicButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<BottomInputController>(builder: (c) {
       return AnimatedPositioned(
-        duration: defaultAnimation,
+        duration: Durations.defaultAnimation,
         right: 5,
         bottom: c.getBottomSpace(),
         child: AnimatedContainer(

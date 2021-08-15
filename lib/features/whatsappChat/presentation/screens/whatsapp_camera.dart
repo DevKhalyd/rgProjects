@@ -2,10 +2,10 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/durations.dart';
 
 import '../../../../core/utils/colors.dart';
 import '../../../../core/widgets/mini_widgets.dart';
-import '../getX/bottom_input_controller.dart';
 import '../getX/whatsapp_camera_controller.dart';
 import '../widgets/camera/camera_space.dart';
 import '../widgets/customGallery/camera.dart';
@@ -116,7 +116,7 @@ class CameraItems extends StatelessWidget {
                           onLongPressEnd: c.onLongPressEndCamera,
                           child: AnimatedContainer(
                             curve: Curves.bounceInOut,
-                            duration: defaultAnimation,
+                            duration: Durations.defaultAnimation,
                             height: c.dimensionSquare,
                             width: c.dimensionSquare,
                             decoration: BoxDecoration(
@@ -126,10 +126,10 @@ class CameraItems extends StatelessWidget {
                                   width: 3.5,
                                 )),
                             child: AnimatedPadding(
-                              duration: defaultAnimation,
+                              duration: Durations.defaultAnimation,
                               padding: EdgeInsets.all(8.0),
                               child: AnimatedContainer(
-                                  duration: defaultAnimation,
+                                  duration: Durations.defaultAnimation,
                                   curve: Curves.bounceInOut,
                                   decoration: BoxDecoration(
                                     color: c.isRecording

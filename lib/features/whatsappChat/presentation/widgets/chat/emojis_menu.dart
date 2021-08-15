@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rg_projects/core/utils/colors.dart';
+import 'package:rg_projects/core/utils/durations.dart';
 import 'package:rg_projects/core/widgets/mini_widgets.dart';
 import 'package:rg_projects/features/whatsappChat/presentation/getX/bottom_input_controller.dart';
 
@@ -14,10 +15,10 @@ class EmojisMenu extends StatelessWidget {
       builder: (c) {
         final isOpenEmojiMenu = c.isOpenEmojiMenu;
         return AnimatedPositioned(
-          duration: defaultAnimation,
+          duration: Durations.defaultAnimation,
           bottom: 0,
           child: AnimatedContainer(
-            duration: defaultAnimation,
+            duration: Durations.defaultAnimation,
             height: isOpenEmojiMenu ? c.getBottomSpace() - 10 : 0,
             width: context.width,
             child: Column(

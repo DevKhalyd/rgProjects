@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/durations.dart';
 import '../../getX/bottom_input_controller.dart';
 
 class BottomInput extends StatelessWidget {
@@ -12,7 +13,7 @@ class BottomInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<BottomInputController>(builder: (c) {
       return AnimatedPositioned(
-        duration: defaultAnimation,
+        duration: Durations.defaultAnimation,
         left: 5,
         bottom: c.getBottomSpace(),
         child: Container(
@@ -46,7 +47,7 @@ class BottomInput extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed:c.onTapFilesAttached,
                 icon: Icon(
                   Icons.attach_file,
                   color: Colors.grey,

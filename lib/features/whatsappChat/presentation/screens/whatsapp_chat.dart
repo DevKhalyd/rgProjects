@@ -6,6 +6,7 @@ import '../../../../core/widgets/mini_widgets.dart';
 import '../getX/bottom_input_controller.dart';
 import '../widgets/chat/bottom_input.dart';
 import '../widgets/chat/emojis_menu.dart';
+import '../widgets/chat/menu_actions.dart';
 import '../widgets/chat/mic_button.dart';
 
 class WhatsAppChat extends StatefulWidget {
@@ -39,6 +40,7 @@ class _WhatsAppChatState extends State<WhatsAppChat> {
               BottomInput(),
               MicButton(),
               EmojisMenu(),
+              MenuSelectAction(),
             ],
           )),
         ],

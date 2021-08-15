@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/core/utils/logger.dart';
 
 class ListenerController extends GetxController {
   double height = 300;

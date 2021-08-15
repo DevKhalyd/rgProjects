@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/durations.dart';
 import '../../../../../core/widgets/mini_widgets.dart';
-import '../../getX/bottom_input_controller.dart';
 import '../../getX/whatsapp_camera_controller.dart';
 
 /// The actions to use to take a picture or
@@ -33,7 +32,7 @@ class Actions extends StatelessWidget {
                   onLongPressEnd: c.onLongPressEndCamera,
                   child: AnimatedContainer(
                     curve: Curves.bounceInOut,
-                    duration: defaultAnimation,
+                    duration: Durations.defaultAnimation,
                     height: c.dimensionSquare,
                     width: c.dimensionSquare,
                     decoration: BoxDecoration(
@@ -43,10 +42,10 @@ class Actions extends StatelessWidget {
                           width: 3.5,
                         )),
                     child: AnimatedPadding(
-                      duration: defaultAnimation,
+                      duration: Durations.defaultAnimation,
                       padding: EdgeInsets.all(8.0),
                       child: AnimatedContainer(
-                          duration: defaultAnimation,
+                          duration: Durations.defaultAnimation,
                           curve: Curves.bounceInOut,
                           decoration: BoxDecoration(
                             color:

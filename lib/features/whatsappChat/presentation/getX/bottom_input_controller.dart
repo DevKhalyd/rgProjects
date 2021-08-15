@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 
 import '../../../../core/utils/routes.dart';
 import '../../../../core/widgets/dialogs/info_dialog.dart';
+import 'attachment_files_controller.dart';
 import 'whatsapp_camera_controller.dart';
 
-const bottomSpace = 10.0;
-const defaultAnimation = Duration(milliseconds: 250);
+const _bottomSpace = 10.0;
 
 class BottomInputController extends GetxController {
   static BottomInputController get to => Get.find();
@@ -16,7 +16,7 @@ class BottomInputController extends GetxController {
   FocusNode _focusNode = FocusNode();
 
   BottomInputController() {
-    listenFocus();
+    listenTxtFieldFocus();
   }
 
   late BuildContext context;
@@ -47,7 +47,7 @@ class BottomInputController extends GetxController {
 
   assignContext(BuildContext c) => context = c;
 
-  listenFocus() {
+  listenTxtFieldFocus() {
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
         if (isOpenEmojiMenu) {
@@ -60,8 +60,8 @@ class BottomInputController extends GetxController {
   }
 
   double getBottomSpace() {
-    if (isOpenEmojiMenu) return bottomSpaceExtra + bottomSpace + 10;
-    return bottomSpace;
+    if (isOpenEmojiMenu) return bottomSpaceExtra + _bottomSpace + 10;
+    return _bottomSpace;
   }
 
   void _timerEmojiMenu() {
@@ -71,7 +71,6 @@ class BottomInputController extends GetxController {
   }
 
   void onPressedCamera() async {
-
     final result = await Get.toNamed(Routes.WHATSAPP_CAMARERA);
 
     if (result == null) return;
@@ -90,4 +89,7 @@ class BottomInputController extends GetxController {
     }
     Get.dialog(InfoDialog(description: 'You have choosed $type'));
   }
+
+  void onTapFilesAttached() =>
+      AttachmentFilesController.to.onTapFilesAttached();
 }

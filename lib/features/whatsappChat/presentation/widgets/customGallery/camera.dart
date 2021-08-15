@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart' hide Actions;
 import 'package:get/get.dart' hide ContextExtensionss;
-import 'package:rg_projects/core/utils/durations.dart';
 
+import '../../../../../core/utils/durations.dart';
 import '../../../../../core/extensions/build_context_ext.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/widgets/mini_widgets.dart';
-import '../../getX/bottom_input_controller.dart';
+
 import '../../getX/custom_gallery_controller.dart';
 import '../../getX/slider_gallery_controller.dart';
 import '../../getX/whatsapp_camera_controller.dart';
@@ -28,7 +28,7 @@ class CameraActions extends StatelessWidget {
     return GetBuilder<SliderGalleryController>(
       builder: (c) {
         return AnimatedPositioned(
-          duration: defaultAnimation,
+          duration: Durations.defaultAnimation,
           bottom: 0,
           child: AnimatedContainer(
             duration: c.animationDuration,
