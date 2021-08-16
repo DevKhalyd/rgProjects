@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/timers.dart';
 
 import 'bottom_input_controller.dart';
 
@@ -20,6 +21,10 @@ class AttachmentFilesController extends GetxController {
   late double currentWidth;
   double currentRadius = 0.0;
 
+  bool _showContent = false;
+
+  bool get showContent => _showContent;
+
   bool get isOpenMenu => currentHeight == _finalHeight;
 
   AttachmentFilesController() {
@@ -27,16 +32,21 @@ class AttachmentFilesController extends GetxController {
     currentWidth = _initialWidth;
   }
 
-  /// Open the menu
+  /// Open the menu or close the menu
   onTapFilesAttached() {
     if (!isOpenMenu) {
       currentHeight = _finalHeight;
       currentWidth = _finalWidth;
       currentRadius = _finalRadius;
+      Timers.execute(() {
+        _showContent = true;
+        update();
+      }, milliseconds: 210);
     } else {
       currentHeight = _initialHeight;
       currentWidth = _initialWidth;
       currentRadius = _initialRadius;
+      _showContent = false;
     }
     update();
   }
