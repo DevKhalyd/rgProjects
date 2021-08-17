@@ -26,6 +26,7 @@ class BottomInputController extends GetxController {
   FocusNode get focusNode => _focusNode;
 
   openCloseEmojiMenu() {
+    AttachmentFilesController.to.closeMenu();
     if (isOpenEmojiMenu) {
       isOpenEmojiMenu = false;
       //OpenKeyboard
