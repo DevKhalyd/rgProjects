@@ -39,7 +39,10 @@ class BottomInput extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: TextFormField(
+                    controller: c.controller,
+                    onChanged: c.onChanged,
                     focusNode: c.focusNode,
+                    maxLines: null,
                     cursorColor: ColorsApp.whatsapp,
                     decoration: InputDecoration.collapsed(
                         hintText: 'Type a message...'),
@@ -47,7 +50,7 @@ class BottomInput extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed:c.onTapFilesAttached,
+                onPressed: c.onTapFilesAttached,
                 icon: Icon(
                   Icons.attach_file,
                   color: Colors.grey,

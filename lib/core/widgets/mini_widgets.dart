@@ -4,17 +4,18 @@ import 'package:rg_projects/core/utils/themes.dart';
 import '../extensions/build_context_ext.dart';
 
 class TextCustom extends StatelessWidget {
-  const TextCustom(this.data,
-      {Key? key,
-      this.fontSize = 14,
-      this.fontWeight,
-      this.color = Colors.black,
-      this.letterSpacing,
-      this.decoration,
-      this.textAlign,
-      this.overflow,
-      this.maxLines})
-      : super(key: key);
+  const TextCustom(
+    this.data, {
+    Key? key,
+    this.fontSize = 14,
+    this.fontWeight,
+    this.color = Colors.black,
+    this.letterSpacing,
+    this.decoration,
+    this.textAlign,
+    this.overflow,
+    this.maxLines,
+  }) : super(key: key);
 
   final String data;
   final double fontSize;

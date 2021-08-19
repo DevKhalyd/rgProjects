@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/extensions/build_context_ext.dart';
 
-const zero = .0;
+const _zero = .0;
 
 class BodyPainter extends StatelessWidget {
   const BodyPainter({Key? key}) : super(key: key);
@@ -9,32 +9,32 @@ class BodyPainter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: ChatPainter(),
+      painter: _ChatPainter(),
       child: Container(
-        color: Colors.red.withOpacity(0.3),
         width: context.width * .9,
-        // TODO: Replace with text instead of height
         height: 60,
       ),
     );
   }
 }
 
-class ChatPainter extends CustomPainter {
+class _ChatPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // Define the type of line
     final paint = Paint()
       ..color = Colors.yellow
       ..strokeWidth = 1
-      ..style = PaintingStyle.stroke
+      ..style = PaintingStyle.fill
       ..strokeCap = StrokeCap.round;
 
     final path = Path()
-      ..moveTo(zero, size.height * .2)
-      ..lineTo(zero, size.height * .8)
+      ..moveTo(_zero, size.height * .2)
+      // Creates a line
+      ..lineTo(_zero, size.height * .8)
+      // Creates a curve
       ..quadraticBezierTo(
-        zero,
+        _zero,
         size.height,
         size.width * 0.04,
         size.height,
@@ -48,13 +48,14 @@ class ChatPainter extends CustomPainter {
       )
       ..lineTo(size.width, size.height * .2)
       ..lineTo(size.width + 15, size.height * .01)
-      ..lineTo(size.width * 0.04, zero)
+      ..lineTo(size.width * 0.04, _zero)
       ..quadraticBezierTo(
         size.width * 0.01,
-        zero,
-        zero,
+        _zero,
+        _zero,
         size.height * 0.2,
-      );
+      )
+      ..close();
     canvas.drawPath(path, paint);
   }
 

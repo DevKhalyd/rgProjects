@@ -5,8 +5,9 @@ import 'package:rg_projects/core/utils/durations.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../getX/bottom_input_controller.dart';
 
-class MicButton extends StatelessWidget {
-  const MicButton({Key? key}) : super(key: key);
+/// Change the icon according to the user's input
+class MicSendButton extends StatelessWidget {
+  const MicSendButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,18 @@ class MicButton extends StatelessWidget {
             shape: BoxShape.circle,
           ),
           child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.mic,
-              color: Colors.white,
+            onPressed: c.onPressedSendMicButton,
+            icon: AnimatedSwitcher(
+              duration: Durations.fiftyMilliseconds,
+              child: c.shouldSendMessage
+                  ? Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    )
+                  : Icon(
+                      Icons.mic,
+                      color: Colors.white,
+                    ),
             ),
           ),
         ),

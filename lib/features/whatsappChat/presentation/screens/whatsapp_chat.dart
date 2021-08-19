@@ -6,8 +6,9 @@ import '../../../../core/widgets/mini_widgets.dart';
 import '../getX/bottom_input_controller.dart';
 import '../widgets/chat/bottom_input.dart';
 import '../widgets/chat/emojis_menu.dart';
+import '../widgets/chat/list_messages.dart';
 import '../widgets/chat/menu_actions.dart';
-import '../widgets/chat/mic_button.dart';
+import '../widgets/chat/mic_send_button.dart';
 
 class WhatsAppChat extends StatefulWidget {
   const WhatsAppChat({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class WhatsAppChat extends StatefulWidget {
 class _WhatsAppChatState extends State<WhatsAppChat> {
   @override
   Widget build(BuildContext context) {
+    /// Use to know how large is the keyboard
     final bottomSpace = MediaQuery.of(context).viewInsets.bottom;
     BottomInputController.to.assignBottomExtraSpace(bottomSpace);
     BottomInputController.to.assignContext(context);
@@ -35,10 +37,11 @@ class _WhatsAppChatState extends State<WhatsAppChat> {
                 'assets/w/images/chat_bg.jpg',
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: context.height,
+                height: double.infinity,
               ),
+              ListMessages(),
               BottomInput(),
-              MicButton(),
+              MicSendButton(),
               EmojisMenu(),
               MenuSelectAction(),
             ],

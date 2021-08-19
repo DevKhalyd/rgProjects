@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/body_painter.dart';
 
 // Resources https://blog.codemagic.io/flutter-custom-painter/
@@ -21,21 +20,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class _Body extends StatelessWidget {
-  const _Body({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: CustomPaint(
-        painter: _ShapePainterWithPathMessage(),
-        child: Container(),
-      ),
-    );
-  }
-}
 
 // Source https://stackoverflow.com/questions/60383699/how-to-draw-shapes-using-bezier-curves-in-a-flutter-custompainter
 // AN ADDITIONAL RESOURCE https://erdoganbavas.medium.com/custom-paint-in-flutter-with-some-curves-fcf5fd0bec4a
