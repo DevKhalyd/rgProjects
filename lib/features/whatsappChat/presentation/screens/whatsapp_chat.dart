@@ -40,7 +40,7 @@ class _WhatsAppChatState extends State<WhatsAppChat> {
                 height: double.infinity,
               ),
               ListMessages(),
-              BottomInput(),
+              //BottomInput(),
               MicSendButton(),
               EmojisMenu(),
               MenuSelectAction(),

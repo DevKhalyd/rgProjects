@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/logger.dart';
 
 import '../../../../core/utils/routes.dart';
 import '../../../../core/widgets/dialogs/info_dialog.dart';
@@ -9,6 +10,7 @@ import 'attachment_files_controller.dart';
 import 'whatsapp_camera_controller.dart';
 
 const _bottomSpace = 10.0;
+const _zero = 0.0;
 
 class BottomInputController extends GetxController {
   static BottomInputController get to => Get.find();
@@ -17,6 +19,8 @@ class BottomInputController extends GetxController {
 
   /// The _controller of the user input
   TextEditingController controller = TextEditingController();
+
+  FocusNode get focusNode => _focusNode;
 
   String _messageToSend = '';
 
@@ -27,6 +31,10 @@ class BottomInputController extends GetxController {
   bool _shouldSendMessage = false;
 
   List<String> _messages = [];
+
+  /// The keyboard space
+  double bottomSpaceExtra = 230;
+  bool isOpenEmojiMenu = false;
 
   /// The message to show in the screen
   List<String> get messages => _messages;
@@ -43,12 +51,79 @@ class BottomInputController extends GetxController {
     listenTxtFieldFocus();
   }
 
-  /// The keyboard space
-  double bottomSpaceExtra = 230;
-  bool isOpenEmojiMenu = false;
+  // NOTE: Mic button to record a note voice
+  // IMPROVE: You can use getters to access to this data
 
-  FocusNode get focusNode => _focusNode;
+  bool isAnimatingButton = false;
 
+  double paddingAll = 12.0;
+  double sizeIcon = 24.0;
+  double rightSide = 5.0;
+  double bottomSide = _zero;
+
+  final _bottomSideFinal = 15.0;
+
+  final _rightSideInital = 5.0;
+  final _rightSideFinal = -20.0;
+
+  final _paddingInitial = 12.0;
+  final _paddingFinal = 25.0;
+
+  final _sizeIconInitial = 24.0;
+  final _sizeIconFinal = 35.0;
+
+  onLongPressMoveUpdate(LongPressMoveUpdateDetails d) {
+    final lP = d.offsetFromOrigin;
+    final dx = lP.dx.abs();
+    final dy = lP.dy.abs();
+
+    Log.console('DX $dx - DY: $dy');
+    _onAnimationGoingLeft(dx, dy);
+    _onAnimationGoingUp(dy, dx);
+  }
+
+  /// Run when the user is not going up
+  void _onAnimationGoingLeft(double dx, double dy) {
+    if (dx < 20) return;
+    final width = context.width;
+    final addRightSide = dx * .25;
+    rightSide = _rightSideInital + addRightSide;
+    if (rightSide > (width * .3) || dy > 50) return;
+    update();
+  }
+
+  /// Run when the user is not going left
+  void _onAnimationGoingUp(double dy, double dx) {
+    if (dx > 5 || dy < 30) return;
+
+    final height = context.height;
+
+    final addTopSide = dy * .25;
+    bottomSide = _zero - addTopSide;
+    if (rightSide > (height * .15)) return;
+    Log.console(bottomSide);
+    update();
+  }
+
+  onLongPress() {
+    paddingAll = _paddingFinal;
+    sizeIcon = _sizeIconFinal;
+    rightSide = _rightSideFinal;
+    bottomSide = _bottomSideFinal;
+    isAnimatingButton = true;
+    update();
+  }
+
+  onLongPressEnd(_) {
+    paddingAll = _paddingInitial;
+    sizeIcon = _sizeIconInitial;
+    bottomSide = _zero;
+    rightSide = _rightSideInital;
+    isAnimatingButton = false;
+    update();
+  }
+
+  // NOTE: Behavior of the input controller
   onChanged(String msg) {
     if (msg.isEmpty) {
       if (_shouldSendMessage) {
@@ -65,14 +140,12 @@ class BottomInputController extends GetxController {
   }
 
   void onPressedSendMicButton() {
-    if (shouldSendMessage) {
-      _messages.add(_messageToSend);
-      _messageToSend = '';
-      controller.clear();
-      update();
-    } else {
-      // TODO: Make the animation
-    }
+    if (!shouldSendMessage) return;
+    _messages.add(_messageToSend);
+    _messageToSend = '';
+    controller.clear();
+    _shouldSendMessage = false;
+    update();
   }
 
   // NOTE: Basic behavior of the input
@@ -119,6 +192,11 @@ class BottomInputController extends GetxController {
     if (avoidValidations) return bottomSpaceExtra + _bottomSpace + 10;
     if (isOpenEmojiMenu) return bottomSpaceExtra + _bottomSpace + 10;
     return _bottomSpace;
+  }
+
+  /// The MicButton widgets works in a different way
+  double getBottomSpaceForMicButton() {
+    return getBottomSpace() - bottomSide;
   }
 
   void _timerEmojiMenu() {

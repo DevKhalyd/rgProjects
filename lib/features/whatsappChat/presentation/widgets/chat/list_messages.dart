@@ -13,7 +13,7 @@ class ListMessages extends StatelessWidget {
       builder: (c) {
         final isKeyboardOpen = c.isKeyboardOpen;
         final height =
-            (context.height * .77) - (isKeyboardOpen ? c.bottomSpaceExtra : 0);
+            (context.height * .795) - (isKeyboardOpen ? c.bottomSpaceExtra : 0);
         final messages = c.messages.reversed.toList();
         return Container(
           height: height,
