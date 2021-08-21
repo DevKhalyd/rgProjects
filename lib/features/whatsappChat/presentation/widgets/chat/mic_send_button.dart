@@ -8,12 +8,11 @@ import '../../getX/bottom_input_controller.dart';
 /// Change the icon according to the user's input
 class MicSendButton extends StatelessWidget {
   const MicSendButton({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BottomInputController>(builder: (c) {
       return AnimatedPositioned(
-        duration: Durations.getDurationInMilliseconds(50),
+        duration: Durations.getDurationInMilliseconds(c.isAnimatingButton ? 10 : 50),
         right: c.rightSide,
         bottom: c.getBottomSpaceForMicButton(),
         child: GestureDetector(

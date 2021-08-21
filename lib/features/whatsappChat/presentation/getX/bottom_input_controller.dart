@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io' show Platform;
+
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,8 @@ import '../../../../core/utils/routes.dart';
 import '../../../../core/widgets/dialogs/info_dialog.dart';
 import 'attachment_files_controller.dart';
 import 'whatsapp_camera_controller.dart';
+
+
 
 const _bottomSpace = 10.0;
 const _zero = 0.0;
@@ -86,7 +90,7 @@ class BottomInputController extends GetxController {
   void _onAnimationGoingLeft(double dx, double dy) {
     if (dx < 20) return;
     final width = context.width;
-    final addRightSide = dx * .25;
+    final addRightSide = dx * .5;
     rightSide = _rightSideInital + addRightSide;
     if (rightSide > (width * .3) || dy > 50) return;
     update();
@@ -95,9 +99,7 @@ class BottomInputController extends GetxController {
   /// Run when the user is not going left
   void _onAnimationGoingUp(double dy, double dx) {
     if (dx > 5 || dy < 30) return;
-
     final height = context.height;
-
     final addTopSide = dy * .25;
     bottomSide = _zero - addTopSide;
     if (rightSide > (height * .15)) return;
@@ -196,7 +198,8 @@ class BottomInputController extends GetxController {
 
   /// The MicButton widgets works in a different way
   double getBottomSpaceForMicButton() {
-    return getBottomSpace() - bottomSide;
+    final extraSpaceForIos = Platform.isIOS ? 25 : 0;
+    return getBottomSpace() - bottomSide + extraSpaceForIos;
   }
 
   void _timerEmojiMenu() {

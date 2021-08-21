@@ -4,11 +4,12 @@ import 'package:get/get.dart';
 import '../../../../core/utils/ui.dart';
 import '../../../../core/widgets/mini_widgets.dart';
 import '../getX/bottom_input_controller.dart';
-import '../widgets/chat/bottom_input.dart';
 import '../widgets/chat/emojis_menu.dart';
 import '../widgets/chat/list_messages.dart';
 import '../widgets/chat/menu_actions.dart';
 import '../widgets/chat/mic_send_button.dart';
+
+import 'dart:io' show Platform;
 
 class WhatsAppChat extends StatefulWidget {
   const WhatsAppChat({Key? key}) : super(key: key);
@@ -27,27 +28,45 @@ class _WhatsAppChatState extends State<WhatsAppChat> {
     return AnnotatedRegionCustom(
       child: Scaffold(
           body: SafeArea(
+              bottom: Platform.isAndroid,
+              top: Platform.isAndroid,
               child: Column(
-        children: [
-          _AppBar(),
-          Expanded(
-              child: Stack(
-            children: [
-              Image.asset(
-                'assets/w/images/chat_bg.jpg',
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
-              ),
-              ListMessages(),
-              //BottomInput(),
-              MicSendButton(),
-              EmojisMenu(),
-              MenuSelectAction(),
-            ],
-          )),
-        ],
-      ))),
+                children: [
+                  if (Platform.isIOS) ExtraSpaceForIOS(),
+                  _AppBar(),
+                  Expanded(
+                      child: Stack(
+                    children: [
+                      Image.asset(
+                        'assets/w/images/chat_bg.jpg',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
+                      ListMessages(),
+                      //BottomInput(),
+                      MicSendButton(),
+                      EmojisMenu(),
+                      MenuSelectAction(),
+                    ],
+                  )),
+                ],
+              ))),
+    );
+  }
+}
+
+class ExtraSpaceForIOS extends StatelessWidget {
+  const ExtraSpaceForIOS({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: context.height * .05,
+      width: double.infinity,
+      color: UI.acentColor,
     );
   }
 }
@@ -103,3 +122,5 @@ class _AppBar extends StatelessWidget {
     );
   }
 }
+
+// TODO: Use animations instead of the flutter widgets
