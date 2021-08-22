@@ -2,7 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rg_projects/core/utils/logger.dart';
-import 'package:rg_projects/features/whatsappChat/presentation/getX/slider_gallery_controller.dart';
+import 'package:rg_projects/features/whatsapp_chat/presentation/getX/slider_gallery_controller.dart';
 
 import '../../../../core/widgets/dialogs/info_dialog.dart';
 import '../../../../core/widgets/mini_widgets.dart';
