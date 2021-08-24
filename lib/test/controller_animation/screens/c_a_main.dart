@@ -2,10 +2,9 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:rg_projects/core/utils/durations.dart';
-import 'package:rg_projects/core/utils/logger.dart';
 
 import '../../../core/extensions/build_context_ext.dart';
+import '../../../core/utils/durations.dart';
 
 void main() => runApp(MyApp());
 

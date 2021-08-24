@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io' show Platform;
 
-
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rg_projects/core/utils/logger.dart';
@@ -10,8 +9,6 @@ import '../../../../core/utils/routes.dart';
 import '../../../../core/widgets/dialogs/info_dialog.dart';
 import 'attachment_files_controller.dart';
 import 'whatsapp_camera_controller.dart';
-
-
 
 const _bottomSpace = 10.0;
 const _zero = 0.0;
@@ -60,8 +57,8 @@ class BottomInputController extends GetxController {
 
   bool isAnimatingButton = false;
 
-  double paddingAll = 12.0;
-  double sizeIcon = 24.0;
+  double paddingAll = 18.0;
+  double sizeIcon = 25.0;
   double rightSide = 5.0;
   double bottomSide = _zero;
 
@@ -70,35 +67,42 @@ class BottomInputController extends GetxController {
   final _rightSideInital = 5.0;
   final _rightSideFinal = -20.0;
 
-  final _paddingInitial = 12.0;
-  final _paddingFinal = 25.0;
+  final _paddingInitial = 18.0;
+  final _paddingFinal = 36.0;
 
-  final _sizeIconInitial = 24.0;
-  final _sizeIconFinal = 35.0;
+  final _sizeIconInitial = 25.0;
+  final _sizeIconFinal = 40.0;
 
   onLongPressMoveUpdate(LongPressMoveUpdateDetails d) {
     final lP = d.offsetFromOrigin;
     final dx = lP.dx.abs();
     final dy = lP.dy.abs();
 
-    Log.console('DX $dx - DY: $dy');
-    _onAnimationGoingLeft(dx, dy);
-    _onAnimationGoingUp(dy, dx);
+    Log.console('DX $dx');
+
+    // Validations to know where go
+
+    if (dx > dy)
+      _onAnimationGoingLeft(dx, dy);
+    else
+      _onAnimationGoingUp(dy, dx);
   }
 
   /// Run when the user is not going up
   void _onAnimationGoingLeft(double dx, double dy) {
-    if (dx < 20) return;
     final width = context.width;
     final addRightSide = dx * .5;
+    Log.console('DX Value: ');
+    Log.console(dx);
+    Log.console('Final value: ');
+    Log.console(addRightSide);
     rightSide = _rightSideInital + addRightSide;
-    if (rightSide > (width * .3) || dy > 50) return;
+    if (rightSide > (width * .3)) return;
     update();
   }
 
   /// Run when the user is not going left
   void _onAnimationGoingUp(double dy, double dx) {
-    if (dx > 5 || dy < 30) return;
     final height = context.height;
     final addTopSide = dy * .25;
     bottomSide = _zero - addTopSide;
@@ -107,7 +111,7 @@ class BottomInputController extends GetxController {
     update();
   }
 
-  onLongPress() {
+  onLongPressStart(_) {
     paddingAll = _paddingFinal;
     sizeIcon = _sizeIconFinal;
     rightSide = _rightSideFinal;
