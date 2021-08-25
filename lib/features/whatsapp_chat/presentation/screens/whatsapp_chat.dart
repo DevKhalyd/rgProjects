@@ -1,15 +1,13 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/chat/animated_btn.dart';
 import '../../../../core/utils/ui.dart';
 import '../../../../core/widgets/mini_widgets.dart';
+import '../getX/bottom_inp_butn_controller.dart';
 import '../getX/bottom_input_controller.dart';
-import '../widgets/chat/emojis_menu.dart';
 import '../widgets/chat/list_messages.dart';
-import '../widgets/chat/menu_actions.dart';
-import '../widgets/chat/mic_send_button.dart';
-
-import 'dart:io' show Platform;
 
 class WhatsAppChat extends StatefulWidget {
   const WhatsAppChat({Key? key}) : super(key: key);
@@ -21,6 +19,42 @@ class WhatsAppChat extends StatefulWidget {
 class _WhatsAppChatState extends State<WhatsAppChat> {
   @override
   Widget build(BuildContext context) {
+    return GetBuilder<BottomInputBtnController>(
+      init: BottomInputBtnController(context),
+      builder: (c) {
+        return AnnotatedRegionCustom(
+          child: Scaffold(
+              body: SafeArea(
+                  bottom: Platform.isAndroid,
+                  top: Platform.isAndroid,
+                  child: Column(
+                    children: [
+                      if (Platform.isIOS) ExtraSpaceForIOS(),
+                      _AppBar(),
+                      Expanded(
+                          child: Stack(
+                        children: [
+                          Image.asset(
+                            'assets/w/images/chat_bg.jpg',
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
+                          // ListMessages(),
+                          AnimatedButtonWhats(),
+                          //MicSendButton(),
+                          //BottomInput(),
+                          // NOTE: Reuse these widgets
+                          //EmojisMenu(),
+                          //MenuSelectAction(),
+                        ],
+                      )),
+                    ],
+                  ))),
+        );
+      },
+    );
+
     /// Use to know how large is the keyboard
     final bottomSpace = MediaQuery.of(context).viewInsets.bottom;
     BottomInputController.to.assignBottomExtraSpace(bottomSpace);
@@ -44,10 +78,11 @@ class _WhatsAppChatState extends State<WhatsAppChat> {
                         height: double.infinity,
                       ),
                       ListMessages(),
+                      //MicSendButton(),
                       //BottomInput(),
-                      MicSendButton(),
-                      EmojisMenu(),
-                      MenuSelectAction(),
+                      // NOTE: Reuse these widgets
+                      //EmojisMenu(),
+                      //MenuSelectAction(),
                     ],
                   )),
                 ],
@@ -122,5 +157,3 @@ class _AppBar extends StatelessWidget {
     );
   }
 }
-
-// TODO: Use animations instead of the flutter widgets

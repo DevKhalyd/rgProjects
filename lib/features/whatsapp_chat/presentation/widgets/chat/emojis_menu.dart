@@ -30,18 +30,18 @@ class EmojisMenu extends StatelessWidget {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      EmojiTab(isEnabled: true),
-                      EmojiTab(),
-                      EmojiTab(),
-                      EmojiTab(),
-                      EmojiTab(),
-                      EmojiTab(),
-                      EmojiTab(),
-                      EmojiTab(),
-                      EmojiTab(),
-                      EmojiTab(),
-                      EmojiTab(),
-                      EmojiTab(),
+                      _EmojiTab(isEnabled: true),
+                      _EmojiTab(),
+                      _EmojiTab(),
+                      _EmojiTab(),
+                      _EmojiTab(),
+                      _EmojiTab(),
+                      _EmojiTab(),
+                      _EmojiTab(),
+                      _EmojiTab(),
+                      _EmojiTab(),
+                      _EmojiTab(),
+                      _EmojiTab(),
                     ],
                   ),
                 )),
@@ -62,8 +62,8 @@ class EmojisMenu extends StatelessWidget {
   }
 }
 
-class EmojiTab extends StatelessWidget {
-  const EmojiTab({
+class _EmojiTab extends StatelessWidget {
+  const _EmojiTab({
     Key? key,
     this.isEnabled = false,
     this.icon = Icons.emoji_emotions_outlined,

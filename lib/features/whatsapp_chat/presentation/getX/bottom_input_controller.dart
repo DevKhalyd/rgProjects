@@ -3,8 +3,8 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/core/utils/logger.dart';
 
+import '../../../../core/utils/logger.dart';
 import '../../../../core/utils/routes.dart';
 import '../../../../core/widgets/dialogs/info_dialog.dart';
 import 'attachment_files_controller.dart';
@@ -13,6 +13,8 @@ import 'whatsapp_camera_controller.dart';
 const _bottomSpace = 10.0;
 const _zero = 0.0;
 
+/// Because this logic is not good implemented we should use another one
+@deprecated
 class BottomInputController extends GetxController {
   static BottomInputController get to => Get.find();
 
@@ -33,7 +35,7 @@ class BottomInputController extends GetxController {
 
   List<String> _messages = [];
 
-  /// The keyboard space
+  /// The keyboard space or the keyboardSize when is open or closed
   double bottomSpaceExtra = 230;
   bool isOpenEmojiMenu = false;
 

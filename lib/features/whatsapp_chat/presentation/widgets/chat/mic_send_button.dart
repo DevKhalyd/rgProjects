@@ -6,6 +6,7 @@ import '../../../../../core/utils/durations.dart';
 import '../../getX/bottom_input_controller.dart';
 
 /// Change the icon according to the user's input
+@deprecated
 class MicSendButton extends StatefulWidget {
   const MicSendButton({Key? key}) : super(key: key);
 

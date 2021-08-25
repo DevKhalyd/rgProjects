@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../../core/extensions/build_context_ext.dart';
 import '../../../core/utils/durations.dart';
-import '../../../core/utils/logger.dart';
 
 const _sideSize = 70.0;
 
@@ -70,7 +69,6 @@ class _CircleButtonDAState extends State<CircleButtonDA>
     // NOTE: The global position provided by the start method and the
     // localOffsetFromOrigin provided by this one are key for get the current position of the user
     // Log.console('globalPosition - $globalPosition'); // start at: 213.4
-    // Log.console('localOffsetFromOrigin - $localOffsetFromOrigin');
 
     if (dx < 0.0 && dy > -15.0) {
       // Get the percentage to animate
