@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/logger.dart';
 
 // Button values
 const _paddingInitial = 18.0;
@@ -57,7 +58,10 @@ class BottomInputBtnController extends GetxController {
   late double globalPositionStartDX, globalPositionStartDY;
 
   /// If this one is true means that the user maintains pressed the button
+  ///
+  /// And is moving to the left
   bool readyForMoveButton = false;
+  bool animatingUp = false;
 
   // Getters and Setters
   double paddingBtn = _paddingInitial;
@@ -77,22 +81,45 @@ class BottomInputBtnController extends GetxController {
     // Move the button according to the user movents
     final localOffsetFromOrigin = d.localOffsetFromOrigin;
     final dx = localOffsetFromOrigin.dx;
-    //final dy = localOffsetFromOrigin.dy;
-    // Going to left
-    if (dx < 0.0) {
-      final result = (dx / globalPositionStartDX).abs();
+    final dy = localOffsetFromOrigin.dy;
+
+    if (dy < -15) {
+      animatingUp = true;
+      final result = (dy / (globalPositionStartDY * .25)).abs();
       controller.value = result;
       return;
     }
+
+    animatingUp = false;
+
+    if (dx < -15.0) {
+      // Explanation of (globalPositionStartDX * .4):
+      // Because this is the global positon and this one is multiplied by the half or less
+      // This one gets faster or lower according to the value assig in the widget to animated
+      // For example if we use the context.width * .2 the globalPostion should be lesser than the original
+      // This because is less px to animate.
+      final result = (dx / (globalPositionStartDX * .4)).abs();
+      // Reset to the start point
+      if (result > 0.95) {
+        _onResetAnimation();
+        return;
+      }
+      controller.value = result;
+    }
   }
 
-  onLongPressEnd(_) {
+  /// Go to the base state
+  _onResetAnimation() {
     // Return to the initial position
     readyForMoveButton = false;
     paddingBtn = _paddingInitial;
     sizeIcon = _sizeIconInitial;
     update();
     controller.fling(velocity: -1.0);
+  }
+
+  onLongPressEnd(_) {
+    _onResetAnimation();
   }
 
   onLongPressStart(LongPressStartDetails d) {

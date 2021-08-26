@@ -17,6 +17,24 @@ Rolando Garcia from Mexico
 
 # TODO
 
-1. Create the containers of each message. Only for each text and figure ouw how to display the
-   messages about 25 characters or more
-2. End the record animation
+1.3 Check the functionality from left to up
+
+2. Mix with the user's input and react to the user's interactions
+
+2.1 Complete with the widgets already created
+
+## Topics to learn in deep
+
+Transform Widget
+
+Hero Animation
+
+Slives like Twitter profile
+
+Payment processors like stripe
+
+Background Services
+
+Notifications for IOS and Android more customize
+
+I think with those topics learned I'll be closer to be a senior
