@@ -7,21 +7,35 @@ My goal is to understand how the animations and complex designs interact with ea
 
 If you want to see how I implement the Clean Architecture or the MVVM you can see my profile in GitHub to explore all my projects on backend and mobile.
 
-## WhatsApp
+# WhatsApp
 
-TODO: Add a description
+Add a description where I describe what I wanted to learn in this app
+
+## TODO
+
+### Basic
+
+1. Add the input with the the design done already (First create another one to handle the animations and then reply the same widgets in the new one)
+
+2. Get the size of the keyboard to do when this one is open
+
+3. Create the second state of the user's input and hanle with the same controller of the button
+
+### Complex - Left Animation
+
+1. Shime, Counter and Icon with a fade animation
+
+2. When the button is almost in the limit make the trash animation.
+
+### Complex - Up Animation
+
+1. Create the animation of the lock
+
+2. React to the animation
 
 # Author
 
 Rolando Garcia from Mexico
-
-# TODO
-
-1.3 Check the functionality from left to up
-
-2. Mix with the user's input and react to the user's interactions
-
-2.1 Complete with the widgets already created
 
 ## Topics to learn in deep
 
@@ -37,4 +51,4 @@ Background Services
 
 Notifications for IOS and Android more customize
 
-I think with those topics learned I'll be closer to be a senior
+I think with those topics learned I'll be closer to be a senior in Flutter
