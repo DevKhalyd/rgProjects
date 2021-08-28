@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/chat/animated_btn.dart';
+import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/chat/animated_input.dart';
 import '../../../../core/utils/ui.dart';
 import '../../../../core/widgets/mini_widgets.dart';
 import '../getX/bottom_inp_butn_controller.dart';
@@ -41,9 +42,8 @@ class _WhatsAppChatState extends State<WhatsAppChat> {
                             height: double.infinity,
                           ),
                           // ListMessages(),
+                          AnimatedInput(),
                           AnimatedButtonWhats(),
-                          //MicSendButton(),
-                          //BottomInput(),
                           // NOTE: Reuse these widgets
                           //EmojisMenu(),
                           //MenuSelectAction(),

@@ -45,7 +45,8 @@ class BottomInput extends StatelessWidget {
                     maxLines: null,
                     cursorColor: ColorsApp.whatsapp,
                     decoration: InputDecoration.collapsed(
-                        hintText: 'Type a message...'),
+                      hintText: 'Type a message...',
+                    ),
                   ),
                 ),
               ),

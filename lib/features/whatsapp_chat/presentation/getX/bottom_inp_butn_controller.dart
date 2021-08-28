@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/core/utils/logger.dart';
 
 // Button values
 const _paddingInitial = 18.0;
