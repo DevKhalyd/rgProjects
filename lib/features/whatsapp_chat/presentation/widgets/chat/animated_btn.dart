@@ -44,8 +44,12 @@ class _AnimatedButtonWhatsState extends State<AnimatedButtonWhats>
             final value = controller.value;
             final animatingUp = c.animatingUp;
 
-            return Positioned(
-              bottom: c.readyForMoveButton
+            // TODO: Move to the controller to handle this logic
+            final getBottomSpace = () {
+              // TODO: Fix this logic to handle with the animaitons in both sides
+              if (c.isOpenEmojiMenu) return c.getExtraSpaceForEmojiMenu();
+
+              return c.readyForMoveButton
                   ? bottomSideFinal +
                       (c.animatingUp
                           ? lerpDouble(
@@ -55,7 +59,11 @@ class _AnimatedButtonWhatsState extends State<AnimatedButtonWhats>
                       bottomSideInitial,
                       bottomSideFinal,
                       value,
-                    ),
+                    );
+            };
+
+            return Positioned(
+              bottom: getBottomSpace(),
 
               /// When the user goes from right to left
               right: c.readyForMoveButton
@@ -66,6 +74,7 @@ class _AnimatedButtonWhatsState extends State<AnimatedButtonWhats>
                   // Going to the corner
                   : lerpDouble(rightSideInitial, rightSideFinal, value),
               child: GestureDetector(
+                onTap: c.onTap,
                 onLongPressMoveUpdate: c.onLongPressMoveUpdate,
                 onLongPressStart: c.onLongPressStart,
                 onLongPressEnd: c.onLongPressEnd,
@@ -81,11 +90,7 @@ class _AnimatedButtonWhatsState extends State<AnimatedButtonWhats>
                       duration: Durations.getDurationInMilliseconds(150),
                       padding: EdgeInsets.all(c.paddingBtn),
                       curve: Curves.bounceOut,
-                      child: Icon(
-                        Icons.mic,
-                        color: Colors.white,
-                        size: c.sizeIcon,
-                      ),
+                      child: c.getIconForAnimatedBtn(),
                     ),
                   ),
                 ),

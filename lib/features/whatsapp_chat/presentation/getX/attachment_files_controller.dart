@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 import '../../../../core/utils/timers.dart';
-import 'bottom_input_controller.dart';
 
 class AttachmentFilesController extends GetxController {
   static AttachmentFilesController get to => Get.find();
@@ -11,7 +10,9 @@ class AttachmentFilesController extends GetxController {
   final _initialWidth = 120.0;
   final _initialRadius = 100.0;
 
-  final double _finalWidth = BottomInputController.to.context.width;
+  late double _finalWidth;
+
+  set finalWidth(double v) => _finalWidth = v;
 
   // NOTE: Check if is needed to use the context.width
   final _finalHeight = 300.0;
@@ -62,12 +63,12 @@ class AttachmentFilesController extends GetxController {
   }
 
   /// Space needed to show the menu
-  double getBottomSpace() => BottomInputController.to.getBottomSpace() + 50;
+  double getBottomSpace() => 65;
 
   /// Get the right distance to show the menu in order with the icon file
   double getRightDistance() {
     if (!isOpenMenu)
-      return BottomInputController.to.context.width * 0.22;
+      return _finalWidth * 0.22;
     else
       return 0;
   }

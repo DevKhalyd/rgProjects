@@ -4,22 +4,22 @@ import 'package:get/get.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/durations.dart';
 import '../../../../../core/widgets/mini_widgets.dart';
-import '../../getX/bottom_input_controller.dart';
+import '../../getX/bottom_inp_butn_controller.dart';
 
 class EmojisMenu extends StatelessWidget {
   const EmojisMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<BottomInputController>(
+    return GetBuilder<BottomInputBtnController>(
       builder: (c) {
         final isOpenEmojiMenu = c.isOpenEmojiMenu;
-        return AnimatedPositioned(
-          duration: Durations.defaultAnimation,
+
+        return Positioned(
           bottom: 0,
           child: AnimatedContainer(
-            duration: Durations.defaultAnimation,
-            height: isOpenEmojiMenu ? c.getBottomSpace() - 10 : 0,
+            duration: Durations.getDurationInMilliseconds(80),
+            height: isOpenEmojiMenu ? c.heightEmojisMenu : 0,
             width: context.width,
             child: Column(
               children: [
@@ -74,31 +74,27 @@ class _EmojiTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<BottomInputController>(
-      builder: (c) {
-        return Container(
-          height: 90,
-          width: 40,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Space(0.009),
-                Icon(
-                  Icons.emoji_emotions_outlined,
-                  color: Colors.grey,
-                ),
-                Space(0.01),
-                if (isEnabled)
-                  Container(
-                    height: 1.5,
-                    width: double.infinity,
-                    color: ColorsApp.whatsapp,
-                  )
-              ],
+    return Container(
+      height: 90,
+      width: 40,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Space(0.009),
+            Icon(
+              Icons.emoji_emotions_outlined,
+              color: Colors.grey,
             ),
-          ),
-        );
-      },
+            Space(0.01),
+            if (isEnabled)
+              Container(
+                height: 1.5,
+                width: double.infinity,
+                color: ColorsApp.whatsapp,
+              )
+          ],
+        ),
+      ),
     );
   }
 }

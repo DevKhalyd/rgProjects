@@ -16,6 +16,7 @@ class MenuSelectAction extends StatelessWidget {
     return GetBuilder<AttachmentFilesController>(
       init: AttachmentFilesController(),
       builder: (c) {
+        c.finalWidth = context.width;
         return AnimatedPositioned(
           bottom: c.getBottomSpace(),
           right: c.getRightDistance(),
@@ -39,58 +40,56 @@ class MenuSelectAction extends StatelessWidget {
                       ? Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 24.0, vertical: 4.0),
-                          child: Container(
-                            child: Column(
-                              children: [
-                                Space(0.03),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      MenuActionItem(
-                                        icon: Icons.camera,
-                                        color: Colors.blue,
-                                        label: 'Document',
-                                      ),
-                                      MenuActionItem(
-                                        icon: Icons.camera,
-                                        color: Colors.red,
-                                        label: 'Camera',
-                                      ),
-                                      MenuActionItem(
-                                        icon: Icons.view_carousel,
-                                        color: Colors.purple,
-                                        label: 'Gallery',
-                                      ),
-                                    ],
-                                  ),
+                          child: Column(
+                            children: [
+                              Space(0.03),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    MenuActionItem(
+                                      icon: Icons.camera,
+                                      color: Colors.blue,
+                                      label: 'Document',
+                                    ),
+                                    MenuActionItem(
+                                      icon: Icons.camera,
+                                      color: Colors.red,
+                                      label: 'Camera',
+                                    ),
+                                    MenuActionItem(
+                                      icon: Icons.view_carousel,
+                                      color: Colors.purple,
+                                      label: 'Gallery',
+                                    ),
+                                  ],
                                 ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      MenuActionItem(
-                                        icon: Icons.audiotrack,
-                                        color: Colors.orange,
-                                        label: 'Audio',
-                                      ),
-                                      MenuActionItem(
-                                        icon: Icons.camera,
-                                        color: Colors.green,
-                                        label: 'Location',
-                                      ),
-                                      MenuActionItem(
-                                        icon: Icons.camera,
-                                        color: Colors.blueAccent,
-                                        label: 'Contact',
-                                      ),
-                                    ],
-                                  ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    MenuActionItem(
+                                      icon: Icons.audiotrack,
+                                      color: Colors.orange,
+                                      label: 'Audio',
+                                    ),
+                                    MenuActionItem(
+                                      icon: Icons.camera,
+                                      color: Colors.green,
+                                      label: 'Location',
+                                    ),
+                                    MenuActionItem(
+                                      icon: Icons.camera,
+                                      color: Colors.blueAccent,
+                                      label: 'Contact',
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ))
                       : Container(),
                 )),

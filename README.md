@@ -13,14 +13,6 @@ Add a description where I describe what I wanted to learn in this app
 
 ## TODO
 
-### Basic
-
-1. Add the input with the the design done already (First create another one to handle the animations and then reply the same widgets in the new one)
-
-2. Get the size of the keyboard to do when this one is open
-
-3. Create the second state of the user's input and hanle with the same controller of the button
-
 ### Complex - Left Animation
 
 1. Shime, Counter and Icon with a fade animation

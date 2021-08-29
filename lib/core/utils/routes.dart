@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../../features/home/presentation/home.dart';
 import '../../features/whatsapp_chat/presentation/bindings/camera_binding.dart';
+import '../../features/whatsapp_chat/presentation/bindings/wsp_chat_binding.dart';
 import '../../features/whatsapp_chat/presentation/screens/whatsapp_camera.dart';
 import '../../features/whatsapp_chat/presentation/screens/whatsapp_chat.dart';
 
@@ -21,6 +22,7 @@ abstract class Routes {
       name: WHATSAPP_CHAT,
       page: () => WhatsAppChat(),
       transition: Transition.leftToRight,
+      binding: WspChatBinding(),
     ),
     GetPage(
       name: WHATSAPP_CAMARERA,

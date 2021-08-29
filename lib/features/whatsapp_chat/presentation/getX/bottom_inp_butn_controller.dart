@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/utils/routes.dart';
+import '../../../../core/widgets/dialogs/info_dialog.dart';
+import 'attachment_files_controller.dart';
+import 'whatsapp_camera_controller.dart';
+
 // Button values
 const _paddingInitial = 18.0;
 const _paddingFinal = 30.0;
@@ -21,6 +26,12 @@ const bottomSideFinal = -20.0;
 class BottomInputBtnController extends GetxController {
   late BuildContext _context;
 
+  double get widthScreen => _context.width;
+
+  double get heightScreen => _context.height;
+
+  set context(BuildContext context) => _context = context;
+
   /// The keyboard space or the _keyboardSize
   /// when is open or closed
   /// A default size
@@ -40,9 +51,11 @@ class BottomInputBtnController extends GetxController {
     update();*/
   }
 
-  BottomInputBtnController(this._context) {
+  BottomInputBtnController(
+      //this._context
+      ) {
     // TODO: Check if this one updates each time the user press on the input
-    keyboardSize = MediaQuery.of(_context).viewInsets.bottom;
+    // keyboardSize = MediaQuery.of(_context).viewInsets.bottom;
     print('KeyboardSize: $keyboardSize');
   }
 
@@ -122,6 +135,7 @@ class BottomInputBtnController extends GetxController {
   }
 
   onLongPressStart(LongPressStartDetails d) {
+    _onCloseEmojis();
     // Make bigger the button
     paddingBtn = _paddingFinal;
     sizeIcon = _sizeIconFinal;
@@ -132,6 +146,111 @@ class BottomInputBtnController extends GetxController {
     controller.fling();
   }
 
+  onTap() {
+    if (!isMicIcon) {
+      final text = _inputController.text;
+      messages.add(text);
+      _inputController.clear();
+      update();
+    }
+  }
+
   // NOTE: Variables and methods for Input User
 
+  final messages = [];
+  TextEditingController _inputController = TextEditingController();
+  FocusNode _inputFocus = FocusNode();
+  bool isMicIcon = true;
+
+  Icon getIconForAnimatedBtn() {
+    return Icon(
+      isMicIcon ? Icons.mic : Icons.send,
+      color: Colors.white,
+      size: sizeIcon,
+    );
+  }
+
+  _listenerInputController() {
+    final text = _inputController.text;
+    if (text.isEmpty) {
+      if (!isMicIcon) {
+        isMicIcon = true;
+        update();
+      }
+      return;
+    }
+    if (isMicIcon) {
+      isMicIcon = false;
+      update();
+    }
+  }
+
+  TextEditingController get inputController {
+    _inputController.addListener(_listenerInputController);
+    return _inputController;
+  }
+
+  FocusNode get inputFocus {
+    _inputFocus.addListener(_listenerFocus);
+    return _inputFocus;
+  }
+
+  _listenerFocus() {
+    final hasFocus = _inputFocus.hasFocus;
+    if (hasFocus) if (isOpenEmojiMenu) _onCloseEmojis();
+  }
+
+  // NOTE: Methos for icons in the input controller
+
+  onTapFilesAttached() => AttachmentFilesController.to.onTapFilesAttached();
+
+  onTapCamera() async {
+    final result = await Get.toNamed(Routes.WHATSAPP_CAMARERA);
+
+    if (result == null) return;
+
+    String type;
+
+    switch (result) {
+      case Picked.picture:
+        type = 'Picture';
+        break;
+      case Picked.video:
+        type = 'Video';
+        break;
+      default:
+        throw UnimplementedError('Missing case');
+    }
+    Get.dialog(InfoDialog(description: 'You have choosed $type'));
+  }
+
+  // NOTE: Emoji method and variables...
+  final heightEmojisMenu = 250.0;
+  bool _isOpenMenuEmojis = false;
+  bool get isOpenEmojiMenu => _isOpenMenuEmojis;
+
+  /// Close or open the menu depending on the current state
+  onTapEmojis() {
+    // Close
+    if (_isOpenMenuEmojis) {
+      _isOpenMenuEmojis = false;
+    }
+    // Open
+    else {
+      _isOpenMenuEmojis = true;
+      if (_inputFocus.hasFocus) _inputFocus.unfocus();
+    }
+    update();
+  }
+
+  /// Close the emoji menu to avoid bad interactions with another animaitons
+  _onCloseEmojis() {
+    if (!isOpenEmojiMenu) return;
+    _isOpenMenuEmojis = false;
+    update();
+  }
+
+  double getExtraSpaceForEmojiMenu() =>
+      // 10 more to make a space between the widgets
+      _isOpenMenuEmojis ? heightEmojisMenu + 7.5 : 0;
 }
