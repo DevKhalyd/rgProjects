@@ -55,29 +55,38 @@ class _RecordVoice extends StatelessWidget {
   const _RecordVoice({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return FadeInRight(
-      duration: Durations.getDurationInMilliseconds(70),
-      child: Row(
-        children: [
-          _IconAnimation(),
-          // NOTE: The stream here
-          Spacer(),
-          _ShimeText(),
-        ],
-      ),
+    return Row(
+      children: [
+        _IconAnimation(),
+        // NOTE: The stream here
+        Spacer(),
+        _ShimeText(),
+      ],
     );
   }
 }
 
-class _IconAnimation extends StatelessWidget {
+/// TODO: Change to another file
+class _IconAnimation extends StatefulWidget {
   const _IconAnimation({
     Key? key,
   }) : super(key: key);
 
   @override
+  __IconAnimationState createState() => __IconAnimationState();
+}
+
+class __IconAnimationState extends State<_IconAnimation> {
+  @override
   Widget build(BuildContext context) {
     return FadeIn(
-      duration: Durations.getDurationInMilliseconds(2500),
+      duration: Durations.getDurationInMilliseconds(750),
+      controller: (c) {
+        c.addStatusListener((status) {
+          if (status == AnimationStatus.completed) c.reverse();
+          if (status == AnimationStatus.dismissed) c.forward();
+        });
+      },
       child: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Icon(

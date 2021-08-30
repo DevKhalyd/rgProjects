@@ -7,43 +7,18 @@ import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/durations.dart';
 import '../../getX/bottom_inp_butn_controller.dart';
 
-/// Animated Button Whats
-class AnimatedButtonWhats extends StatefulWidget {
+class AnimatedButtonWhats extends StatelessWidget {
   const AnimatedButtonWhats({Key? key}) : super(key: key);
-
-  @override
-  _AnimatedButtonWhatsState createState() => _AnimatedButtonWhatsState();
-}
-
-class _AnimatedButtonWhatsState extends State<AnimatedButtonWhats>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(
-        vsync: this, duration: Durations.getDurationInMilliseconds(50));
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BottomInputBtnController>(
       builder: (c) {
-        /// Asign the controller to use from the main controller
-        c.controller = controller;
         return AnimatedBuilder(
-          animation: controller,
+          animation: c.controller,
           builder: (_, __) {
-            final value = controller.value;
+            final value = c.controller.value;
             final animatingUp = c.animatingUp;
-
             // TODO: Move to the controller to handle this logic
             final getBottomSpace = () {
               if (c.isOpenEmojiMenu) return c.getExtraSpaceForEmojiMenu();
@@ -63,6 +38,7 @@ class _AnimatedButtonWhatsState extends State<AnimatedButtonWhats>
 
             return Positioned(
               bottom: getBottomSpace(),
+
               /// When the user goes from right to left
               right: c.readyForMoveButton
                   // Going left

@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/durations.dart';
 
 import '../../../../core/utils/ui.dart';
 import '../../../../core/widgets/mini_widgets.dart';
@@ -19,12 +20,31 @@ class WhatsAppChat extends StatefulWidget {
   _WhatsAppChatState createState() => _WhatsAppChatState();
 }
 
-class _WhatsAppChatState extends State<WhatsAppChat> {
+class _WhatsAppChatState extends State<WhatsAppChat>
+    with SingleTickerProviderStateMixin {
+  /// A controller use by the children of this widget
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+        vsync: this, duration: Durations.getDurationInMilliseconds(50));
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BottomInputBtnController>(
       builder: (c) {
+        // Assign values
         c.context = context;
+        c.controller = controller;
         return AnnotatedRegionCustom(
           child: Scaffold(
               body: SafeArea(
@@ -44,8 +64,8 @@ class _WhatsAppChatState extends State<WhatsAppChat> {
                             height: double.infinity,
                           ),
                           ListMessages(),
-                          AnimatedButtonWhats(),
                           AnimatedInput(),
+                          AnimatedButtonWhats(),
                           EmojisMenu(),
                           MenuSelectAction(),
                         ],
