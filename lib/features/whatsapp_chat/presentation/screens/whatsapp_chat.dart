@@ -2,7 +2,6 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/chat/list_messages.dart';
 
 import '../../../../core/utils/ui.dart';
 import '../../../../core/widgets/mini_widgets.dart';
@@ -10,6 +9,7 @@ import '../getX/bottom_inp_butn_controller.dart';
 import '../widgets/chat/animated_btn.dart';
 import '../widgets/chat/animated_input.dart';
 import '../widgets/chat/emojis_menu.dart';
+import '../widgets/chat/list_messages.dart';
 import '../widgets/chat/menu_actions.dart';
 
 class WhatsAppChat extends StatefulWidget {
@@ -44,8 +44,8 @@ class _WhatsAppChatState extends State<WhatsAppChat> {
                             height: double.infinity,
                           ),
                           ListMessages(),
-                          AnimatedInput(),
                           AnimatedButtonWhats(),
+                          AnimatedInput(),
                           EmojisMenu(),
                           MenuSelectAction(),
                         ],

@@ -9,7 +9,7 @@ If you want to see how I implement the Clean Architecture or the MVVM you can se
 
 # WhatsApp
 
-Add a description where I describe what I wanted to learn in this app
+TODO: Add a description where I describe what I wanted to learn in this app. Make the same thing inside the app
 
 ## TODO
 
@@ -35,7 +35,7 @@ Transform Widget
 
 Hero Animation
 
-Slives like Twitter profile
+Slives like Twitter profile. Relates to Hero Animation
 
 Payment processors like stripe
 

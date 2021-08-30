@@ -32,34 +32,7 @@ class BottomInputBtnController extends GetxController {
 
   set context(BuildContext context) => _context = context;
 
-  /// The keyboard space or the _keyboardSize
-  /// when is open or closed
-  /// A default size
-  double _keyboardSize = 230;
-
-  double get keyboardSize => _keyboardSize;
-
-  set keyboardSize(double space) {
-    if (space > 0 && space > keyboardSize) {
-      keyboardSize = space;
-      update();
-    }
-    /* if (space == 0)
-      _isKeyboardOpen = false;
-    else
-      _isKeyboardOpen = true;
-    update();*/
-  }
-
-  BottomInputBtnController(
-      //this._context
-      ) {
-    // TODO: Check if this one updates each time the user press on the input
-    // keyboardSize = MediaQuery.of(_context).viewInsets.bottom;
-    print('KeyboardSize: $keyboardSize');
-  }
-
-  // NOTE: Variables and methods for Button Aniamted. Check the at the file top to see the
+  // NOTE: Variables and methods for Button and Input Animated.
 
   /// The animation controller
   AnimationController? _controller;
@@ -71,9 +44,18 @@ class BottomInputBtnController extends GetxController {
 
   /// If this one is true means that the user maintains pressed the button
   ///
-  /// And is moving to the left
+  /// And is moving to the left or moving to the up position
   bool readyForMoveButton = false;
+
+  /// When the user is going up
   bool animatingUp = false;
+
+  /// When the user is going left
+  bool animatingLeft = false;
+
+  /// If this one is set to true the input will to incres it's size
+  /// and show the record widget
+  bool shouldExpandInputSize = false;
 
   // Getters and Setters
   double paddingBtn = _paddingInitial;
@@ -95,8 +77,11 @@ class BottomInputBtnController extends GetxController {
     final dx = localOffsetFromOrigin.dx;
     final dy = localOffsetFromOrigin.dy;
 
+    // Going up
     if (dy < -15) {
       animatingUp = true;
+
+      /// See the explanation in dx
       final result = (dy / (globalPositionStartDY * .25)).abs();
       controller.value = result;
       return;
@@ -104,7 +89,9 @@ class BottomInputBtnController extends GetxController {
 
     animatingUp = false;
 
+    // Going left
     if (dx < -15.0) {
+      animatingLeft = true;
       // Explanation of (globalPositionStartDX * .4):
       // Because this is the global positon and this one is multiplied by the half or less
       // This one gets faster or lower according to the value assig in the widget to animated
@@ -126,6 +113,8 @@ class BottomInputBtnController extends GetxController {
     readyForMoveButton = false;
     paddingBtn = _paddingInitial;
     sizeIcon = _sizeIconInitial;
+    shouldExpandInputSize = false;
+    animatingLeft = false;
     update();
     controller.fling(velocity: -1.0);
   }
@@ -137,6 +126,7 @@ class BottomInputBtnController extends GetxController {
   onLongPressStart(LongPressStartDetails d) {
     _onCloseEmojis();
     // Make bigger the button
+    shouldExpandInputSize = true;
     paddingBtn = _paddingFinal;
     sizeIcon = _sizeIconFinal;
     update();

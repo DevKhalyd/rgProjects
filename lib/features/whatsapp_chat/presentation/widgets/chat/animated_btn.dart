@@ -46,7 +46,6 @@ class _AnimatedButtonWhatsState extends State<AnimatedButtonWhats>
 
             // TODO: Move to the controller to handle this logic
             final getBottomSpace = () {
-              // TODO: Fix this logic to handle with the animaitons in both sides
               if (c.isOpenEmojiMenu) return c.getExtraSpaceForEmojiMenu();
 
               return c.readyForMoveButton
@@ -64,7 +63,6 @@ class _AnimatedButtonWhatsState extends State<AnimatedButtonWhats>
 
             return Positioned(
               bottom: getBottomSpace(),
-
               /// When the user goes from right to left
               right: c.readyForMoveButton
                   // Going left
