@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/streams.dart';
 
 import '../../../../core/utils/routes.dart';
 import '../../../../core/widgets/dialogs/info_dialog.dart';
@@ -24,6 +25,11 @@ const bottomSideFinal = -20.0;
 ///
 /// Almost everything, this because interacts with each other
 class BottomInputBtnController extends GetxController {
+  final streams = Streams();
+
+  /// Counter for the stream
+  HourMinute currentTime = HourMinute.zero();
+
   late BuildContext _context;
 
   double get widthScreen => _context.width;
@@ -115,6 +121,7 @@ class BottomInputBtnController extends GetxController {
     sizeIcon = _sizeIconInitial;
     shouldExpandInputSize = false;
     animatingLeft = false;
+    currentTime = HourMinute.zero();
     update();
     controller.fling(velocity: -1.0);
   }

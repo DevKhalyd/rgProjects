@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:animate_do/animate_do.dart';
 
 import '../../../../../core/utils/colors.dart';
-import '../../../../../core/utils/durations.dart';
 import '../../../../../core/widgets/mini_widgets.dart';
 import '../../getX/bottom_inp_butn_controller.dart';
+import 'counter_input.dart';
+import 'icon_animated.dart';
 
 class AnimatedInput extends StatelessWidget {
   const AnimatedInput({Key? key}) : super(key: key);
@@ -20,13 +20,13 @@ class AnimatedInput extends StatelessWidget {
         final width = context.width;
         final shouldExpandInputSize = c.shouldExpandInputSize;
         return Positioned(
-            // Need 10 of space to show all the data
             bottom:
                 (c.isOpenEmojiMenu ? 7 : 10) + c.getExtraSpaceForEmojiMenu(),
             left: 5,
             child: AnimatedBuilder(
                 animation: c.controller,
-                builder: (_, __) {
+                child: _RecordVoice(),
+                builder: (_, child) {
                   final value = c.controller.value.clamp(0, 1).toDouble();
                   return Container(
                     // With .9 peercent get the size required and 81 is the size by default
@@ -39,10 +39,7 @@ class AnimatedInput extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32.0),
                         color: Colors.white),
-                    // NOTE: Change this one
-                    child: !shouldExpandInputSize
-                        ? _RecordVoice()
-                        : _BaseStateInput(),
+                    child: shouldExpandInputSize ? child : _BaseStateInput(),
                   );
                 }));
       },
@@ -57,43 +54,12 @@ class _RecordVoice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        _IconAnimation(),
-        // NOTE: The stream here
+        IconAnimated(),
+        Space(0.025, isHorizontal: true),
+        CounterInput(),
         Spacer(),
         _ShimeText(),
       ],
-    );
-  }
-}
-
-/// TODO: Change to another file
-class _IconAnimation extends StatefulWidget {
-  const _IconAnimation({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  __IconAnimationState createState() => __IconAnimationState();
-}
-
-class __IconAnimationState extends State<_IconAnimation> {
-  @override
-  Widget build(BuildContext context) {
-    return FadeIn(
-      duration: Durations.getDurationInMilliseconds(750),
-      controller: (c) {
-        c.addStatusListener((status) {
-          if (status == AnimationStatus.completed) c.reverse();
-          if (status == AnimationStatus.dismissed) c.forward();
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10),
-        child: Icon(
-          Icons.mic,
-          color: Colors.red,
-        ),
-      ),
     );
   }
 }
