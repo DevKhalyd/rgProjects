@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/animations/mic_trash_animation.dart';
+import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/animations/trash_animation.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/colors.dart';
@@ -187,6 +189,15 @@ class _EmojiBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<BottomInputBtnController>(
       builder: (c) {
+        return Expanded(
+          child: TrashAnimation(
+            child: MicTrashAnimation(),
+          ),
+        );
+        final lastShowATrashAnimation = c.lastShowATrashAnimation;
+
+        if (lastShowATrashAnimation) return Icon(Icons.ac_unit_outlined);
+
         return Expanded(
             child: IconButton(
                 onPressed: c.onTapEmojis,

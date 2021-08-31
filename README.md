@@ -13,11 +13,13 @@ TODO: Add a description where I describe what I wanted to learn in this app. Mak
 
 ## TODO
 
-### Complex - Left Animation
+### Complex - Trash Animation
 
-1. Shime, Counter and Icon with a fade animation
+1. Create the animation when the trash open and close (tape)
 
-2. When the button is almost in the limit make the trash animation.
+2. Icon animation
+
+3. Change between icons
 
 ### Complex - Up Animation
 

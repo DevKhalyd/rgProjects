@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/core/utils/streams.dart';
 
 import '../../../../core/utils/routes.dart';
+import '../../../../core/utils/streams.dart';
 import '../../../../core/widgets/dialogs/info_dialog.dart';
 import 'attachment_files_controller.dart';
 import 'whatsapp_camera_controller.dart';
@@ -63,6 +63,13 @@ class BottomInputBtnController extends GetxController {
   /// and show the record widget
   bool shouldExpandInputSize = false;
 
+  /// Show the animation when the user drops the button
+  bool _shouldShowATrashAnimation = false;
+
+  /// If this one is executed another time create a flag that
+  /// handle the animation time
+  bool lastShowATrashAnimation = false;
+
   // Getters and Setters
   double paddingBtn = _paddingInitial;
   double sizeIcon = _sizeIconInitial;
@@ -98,6 +105,8 @@ class BottomInputBtnController extends GetxController {
     // Going left
     if (dx < -15.0) {
       animatingLeft = true;
+      if (animatingLeft && !_shouldShowATrashAnimation)
+        _shouldShowATrashAnimation = true;
       // Explanation of (globalPositionStartDX * .4):
       // Because this is the global positon and this one is multiplied by the half or less
       // This one gets faster or lower according to the value assig in the widget to animated
@@ -128,11 +137,18 @@ class BottomInputBtnController extends GetxController {
 
   onLongPressEnd(_) {
     _onResetAnimation();
+
+    if (_shouldShowATrashAnimation) {
+      lastShowATrashAnimation = true;
+      update();
+    }
   }
 
   onLongPressStart(LongPressStartDetails d) {
     _onCloseEmojis();
     // Make bigger the button
+    // NOTE: Check if this one should be showned
+    _shouldShowATrashAnimation = false;
     shouldExpandInputSize = true;
     paddingBtn = _paddingFinal;
     sizeIcon = _sizeIconFinal;
@@ -141,6 +157,8 @@ class BottomInputBtnController extends GetxController {
     globalPositionStartDX = d.globalPosition.dx;
     globalPositionStartDY = d.globalPosition.dy;
     controller.fling();
+    // ! Update from anoter side. Not here
+    lastShowATrashAnimation = false;
   }
 
   onTap() {
