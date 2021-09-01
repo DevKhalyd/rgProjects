@@ -65,8 +65,10 @@ class BottomInputBtnController extends GetxController {
   /// When the user is going left
   bool animatingLeft = false;
 
+  // TODO: Use this one to appear the block widget
   /// If this one is set to true the input will to incres it's size
-  /// and show the record widget
+  /// and show the record widget and the block widget because depends on the same
+  /// variable
   bool shouldExpandInputSize = false;
 
   /// Show the animation when the user drops the button
@@ -143,7 +145,6 @@ class BottomInputBtnController extends GetxController {
 
   onLongPressEnd(_) {
     _onResetAnimation();
-
     if (_shouldShowATrashAnimation) {
       lastShowATrashAnimation = true;
       update();
@@ -177,7 +178,6 @@ class BottomInputBtnController extends GetxController {
   }
 
   // NOTE: Variables and methods for Input User
-
   final messages = [];
   TextEditingController _inputController = TextEditingController();
   FocusNode _inputFocus = FocusNode();
@@ -278,7 +278,6 @@ class BottomInputBtnController extends GetxController {
   // NOTE: Handle the application icon
 
   /// Icon Widget to show when the chat is launched the first time
-
   /// TrashAnimation when the user drops the button
   Widget _secondWidget = TrashAnimation(
     child: MicTrashAnimation(),
@@ -299,6 +298,7 @@ class BottomInputBtnController extends GetxController {
     );
   }
 
+  /// Restart the emoji icon in the user's input
   restartInput() {
     lastShowATrashAnimation = !lastShowATrashAnimation;
     update();

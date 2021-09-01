@@ -2,12 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/core/utils/durations.dart';
-import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/animations/mic_trash_animation.dart';
-import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/animations/trash_animation.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/durations.dart';
 import '../../../../../core/widgets/mini_widgets.dart';
 import '../../getX/bottom_inp_butn_controller.dart';
 import 'counter_input.dart';

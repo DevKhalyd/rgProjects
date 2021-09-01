@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rg_projects/features/whatsapp_chat/presentation/getX/bottom_inp_butn_controller.dart';
 
-import '../../getX/bottom_input_controller.dart';
 import 'chat_bubble.dart';
 
 class ListMessages extends StatelessWidget {
