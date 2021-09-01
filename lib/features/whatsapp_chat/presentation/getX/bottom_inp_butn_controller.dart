@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import '../../../../core/utils/routes.dart';
 import '../../../../core/utils/streams.dart';
 import '../../../../core/widgets/dialogs/info_dialog.dart';
+import '../widgets/animations/mic_trash_animation.dart';
+import '../widgets/animations/trash_animation.dart';
 import 'attachment_files_controller.dart';
 import 'whatsapp_camera_controller.dart';
 
@@ -25,9 +27,13 @@ const bottomSideFinal = -20.0;
 ///
 /// Almost everything, this because interacts with each other
 class BottomInputBtnController extends GetxController {
+  static BottomInputBtnController get to => Get.find();
+
   final streams = Streams();
 
   /// Counter for the stream
+  ///
+  /// Serves to avoid the rebuild of the counter
   HourMinute currentTime = HourMinute.zero();
 
   late BuildContext _context;
@@ -268,4 +274,33 @@ class BottomInputBtnController extends GetxController {
   double getExtraSpaceForEmojiMenu() =>
       // 10 more to make a space between the widgets
       _isOpenMenuEmojis ? heightEmojisMenu + 7.5 : 0;
+
+  // NOTE: Handle the application icon
+
+  /// Icon Widget to show when the chat is launched the first time
+
+  /// TrashAnimation when the user drops the button
+  Widget _secondWidget = TrashAnimation(
+    child: MicTrashAnimation(),
+  );
+
+  Widget getLeftInputWidget() {
+    if (!lastShowATrashAnimation) return _getFirstWidget();
+    return _secondWidget;
+  }
+
+  Widget _getFirstWidget() {
+    return IconButton(
+      onPressed: onTapEmojis,
+      icon: Icon(
+        Icons.emoji_emotions_outlined,
+        color: Colors.grey,
+      ),
+    );
+  }
+
+  restartInput() {
+    lastShowATrashAnimation = !lastShowATrashAnimation;
+    update();
+  }
 }

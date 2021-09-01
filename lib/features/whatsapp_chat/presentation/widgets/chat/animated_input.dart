@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/durations.dart';
 import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/animations/mic_trash_animation.dart';
 import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/animations/trash_animation.dart';
 import 'package:shimmer/shimmer.dart';
@@ -190,21 +191,18 @@ class _EmojiBtn extends StatelessWidget {
     return GetBuilder<BottomInputBtnController>(
       builder: (c) {
         return Expanded(
-          child: TrashAnimation(
-            child: MicTrashAnimation(),
+          child: AnimatedSwitcher(
+            duration: Durations.getDurationInMilliseconds(800),
+            child: c.getLeftInputWidget(),
+            transitionBuilder: (child, animation) => SlideTransition(
+              position: Tween(
+                begin: Offset(0, 2.5),
+                end: Offset(0, 0),
+              ).animate(animation),
+              child: child,
+            ),
           ),
         );
-        final lastShowATrashAnimation = c.lastShowATrashAnimation;
-
-        if (lastShowATrashAnimation) return Icon(Icons.ac_unit_outlined);
-
-        return Expanded(
-            child: IconButton(
-                onPressed: c.onTapEmojis,
-                icon: Icon(
-                  Icons.emoji_emotions_outlined,
-                  color: Colors.grey,
-                )));
       },
     );
   }
