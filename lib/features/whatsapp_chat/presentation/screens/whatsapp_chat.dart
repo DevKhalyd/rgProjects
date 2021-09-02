@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rg_projects/core/utils/durations.dart';
+import 'package:rg_projects/core/widgets/dialogs/info_dialog.dart';
 import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/chat/animated_locked.dart';
 
 import '../../../../core/utils/ui.dart';
@@ -31,6 +32,15 @@ class _WhatsAppChatState extends State<WhatsAppChat>
     super.initState();
     controller = AnimationController(
         vsync: this, duration: Durations.getDurationInMilliseconds(50));
+    Future.delayed(Duration.zero, () {
+      final description =
+          'My goals when I was developing this feature of whatsapp chat was to understand how the animations works between each other. Also understand how to make my own animations. \n \n'
+          'Note: To work the app properly please accept all the permissions asked. This to avoid errors in the gallery part.';
+      Get.dialog(InfoDialog(
+        description: description,
+        title: 'Goals',
+      ));
+    });
   }
 
   @override

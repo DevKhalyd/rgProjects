@@ -7,25 +7,13 @@ My goal is to understand how the animations and complex designs interact with ea
 
 If you want to see how I implement the Clean Architecture or the MVVM you can see my profile in GitHub to explore all my projects on backend and mobile.
 
+TODO: Create a Index of the applications
+
+
+
 # WhatsApp
 
-TODO: Add a description where I describe what I wanted to learn in this app. Make the same thing inside the app
 
-## TODO
-
-### Complex - Trash Animation
-
-1. Create the animation when the trash open and close (tape)
-
-2. Icon animation
-
-3. Change between icons
-
-### Complex - Up Animation
-
-1. Create the animation of the lock
-
-2. React to the animation
 
 # Author
 

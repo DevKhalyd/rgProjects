@@ -4,11 +4,14 @@ import 'package:get/get.dart';
 import '../mini_widgets.dart';
 
 class InfoDialog extends StatelessWidget {
-  const InfoDialog(
-      {Key? key, this.title = 'Attention', required this.description})
-      : super(key: key);
+  const InfoDialog({
+    Key? key,
+    this.title = 'Attention',
+    this.button = 'Back',
+    required this.description,
+  }) : super(key: key);
 
-  final String title, description;
+  final String title, description, button;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,12 @@ class InfoDialog extends StatelessWidget {
       title: TextCustom(title),
       content: TextCustom(description),
       actions: [
-        TextButton(onPressed: () => Get.back(), child: TextCustom('Back'))
+        TextButton(
+            onPressed: () => Get.back(),
+            child: TextCustom(
+              button,
+              textAlign: TextAlign.justify,
+            ))
       ],
     );
   }
