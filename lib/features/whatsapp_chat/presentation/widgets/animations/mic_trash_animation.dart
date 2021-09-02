@@ -53,16 +53,13 @@ class __MicAnimmationState extends State<MicTrashAnimation>
 
     controllerTranslation.forward();
     controllerTranslation.addStatusListener((status) {
-      Log.console(status);
       if (status == AnimationStatus.completed) {
         controllerTranslation.reverse();
       }
-
       if (status == AnimationStatus.reverse) {
         controllerScale.forward();
       }
     });
-
     Future.delayed(Durations.getDurationInMilliseconds(750), () {
       controllerMic.forward();
     });

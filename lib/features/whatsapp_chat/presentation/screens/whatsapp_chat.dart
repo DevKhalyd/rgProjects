@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rg_projects/core/utils/durations.dart';
+import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/chat/animated_locked.dart';
 
 import '../../../../core/utils/ui.dart';
 import '../../../../core/widgets/mini_widgets.dart';
@@ -65,6 +66,7 @@ class _WhatsAppChatState extends State<WhatsAppChat>
                           ),
                           ListMessages(),
                           AnimatedInput(),
+                          LockVoiceRecord(),
                           AnimatedButtonWhats(),
                           EmojisMenu(),
                           MenuSelectAction(),

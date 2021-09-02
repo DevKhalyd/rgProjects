@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/logger.dart';
 
 import '../../../../core/utils/routes.dart';
 import '../../../../core/utils/streams.dart';
@@ -84,6 +85,7 @@ class BottomInputBtnController extends GetxController {
   double rightSide = rightSideInitial;
   double bottomSide = bottomSideInitial;
 
+  /// This controller almost handle all the animations
   AnimationController get controller => _controller!;
 
   set controller(AnimationController c) {
@@ -100,6 +102,7 @@ class BottomInputBtnController extends GetxController {
 
     // Going up
     if (dy < -15) {
+      animatingLeft = false;
       animatingUp = true;
 
       /// See the explanation in dx
@@ -127,6 +130,8 @@ class BottomInputBtnController extends GetxController {
         return;
       }
       controller.value = result;
+    } else {
+      animatingLeft = false;
     }
   }
 
@@ -138,6 +143,7 @@ class BottomInputBtnController extends GetxController {
     sizeIcon = _sizeIconInitial;
     shouldExpandInputSize = false;
     animatingLeft = false;
+    animatingUp = false;
     currentTime = HourMinute.zero();
     update();
     controller.fling(velocity: -1.0);
@@ -164,7 +170,6 @@ class BottomInputBtnController extends GetxController {
     globalPositionStartDX = d.globalPosition.dx;
     globalPositionStartDY = d.globalPosition.dy;
     controller.fling();
-    // ! Update from anoter side. Not here
     lastShowATrashAnimation = false;
   }
 
