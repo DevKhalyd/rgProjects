@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/src/features/clone_features/whatsapp_chat/presentation/getX/bottom_inp_butn_controller.dart';
 
+import '../../getX/bottom_inp_butn_controller.dart';
 import 'chat_bubble.dart';
 
 class ListMessages extends StatelessWidget {
@@ -21,7 +21,7 @@ class ListMessages extends StatelessWidget {
             itemCount: messages.length,
             padding: EdgeInsets.all(14.0),
             reverse: true,
-            itemBuilder: (_, index) => ChatBubble(message: messages[index]),
+            itemBuilder: (_, i) => ChatBubble(message: messages[i]),
           ),
         );
       },

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../core/utils/themes.dart';
-import '../../../core/utils/ui.dart';
-import '../../../core/widgets/mini_widgets.dart';
-import 'widgets/section_button.dart';
+import '../../../../core/utils/themes.dart';
+import '../../../../core/utils/ui.dart';
+import '../../../../core/widgets/mini_widgets.dart';
+import '../widgets/section_button.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);

@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import '../../src/features/clone_features/whatsapp_chat/presentation/bindings/camera_binding.dart';
-import '../../src/features/clone_features/whatsapp_chat/presentation/bindings/wsp_chat_binding.dart';
-import '../../src/features/clone_features/whatsapp_chat/presentation/screens/whatsapp_camera.dart';
-import '../../src/features/clone_features/whatsapp_chat/presentation/screens/whatsapp_chat.dart';
-import '../../src/home/home.dart';
+import '../../features/clone_features/whatsapp_chat/presentation/bindings/camera_binding.dart';
+import '../../features/clone_features/whatsapp_chat/presentation/bindings/wsp_chat_binding.dart';
+import '../../features/clone_features/whatsapp_chat/presentation/screens/whatsapp_camera.dart';
+import '../../features/clone_features/whatsapp_chat/presentation/screens/whatsapp_chat.dart';
+import '../../home/screens/home.dart';
 
 abstract class Routes {
   // TODO: When in web, create the 404 error page

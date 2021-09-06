@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../src/home/models/section_model.dart';
+import '../../home/models/section_model.dart';
 import 'routes.dart';
 
 abstract class UI {
