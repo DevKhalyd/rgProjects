@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:rg_projects/features/whatsapp_chat/presentation/widgets/animations/mic_trash_animation.dart';
+import 'package:rg_projects/src/features/clone_features/whatsapp_chat/presentation/widgets/animations/mic_trash_animation.dart';
 
 void main() => runApp(MyApp());
 

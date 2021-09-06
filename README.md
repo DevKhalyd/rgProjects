@@ -9,8 +9,6 @@ If you want to see how I implement the Clean Architecture or the MVVM you can se
 
 TODO: Create a Index of the applications
 
-
-
 # WhatsApp
 
 

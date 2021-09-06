@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../features/whatsapp_chat/presentation/widgets/chat/animated_locked.dart';
-
+import 'package:rg_projects/src/features/clone_features/whatsapp_chat/presentation/widgets/chat/animated_locked.dart';
 
 void main() => runApp(MyApp());
 

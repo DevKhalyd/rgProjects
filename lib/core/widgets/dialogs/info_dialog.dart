@@ -7,7 +7,7 @@ class InfoDialog extends StatelessWidget {
   const InfoDialog({
     Key? key,
     this.title = 'Attention',
-    this.button = 'Back',
+    this.button = 'OK',
     required this.description,
   }) : super(key: key);
 
