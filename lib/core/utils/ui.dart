@@ -10,10 +10,6 @@ abstract class UI {
 
   static const footerColor = const Color.fromRGBO(36, 42, 47, 1);
 
-  ///  In each list:
-  ///  0 contains the section.
-  ///  1 contains the about section
-  ///  3 contains the ro
   static final sectionList = <SectionModel>[
     SectionModel(
       section: 'Designs',
@@ -32,11 +28,11 @@ abstract class UI {
           'Widgets from scratch like a Custom Progress Indicator, Rendering Objects or CustomPainter with Animations',
       route: Routes.FANCY_WIDGETS,
     ),
-    SectionModel(
+    /* SectionModel(
       section: 'Native Services',
       about:
           'Services like: Background services, Notifications that ties in with each platform',
       route: Routes.NATIVE_SERVICES,
-    ),
+    ),*/
   ];
 }

@@ -19,7 +19,10 @@ class HomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget child = Column(children: children);
+    Widget child = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: children,
+    );
 
     if (withScroll) child = SingleChildScrollView(child: child);
 

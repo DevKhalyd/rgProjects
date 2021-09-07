@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:rg_projects/features/designs/saver_password/presentation/screens/saver_password_screen.dart';
 
 import '../../features/clone_features/clone_features_section.dart';
 import '../../features/clone_features/whatsapp_chat/presentation/bindings/camera_binding.dart';
@@ -27,6 +28,9 @@ abstract class Routes {
   // WhatsApp - Clone Features
   static const WHATSAPP_CHAT = '/whatsAppChat';
   static const WHATSAPP_CAMERA = '/whatsAppCamera';
+
+  // Saver Password
+  static const SAVER_PASSWORD = '/saverPassword';
 
   // GetxPages
   static final pages = <GetPage>[
@@ -72,6 +76,12 @@ abstract class Routes {
       name: WHATSAPP_CAMERA,
       page: () => WhatsAppCamarera(),
       binding: CameraBinding(),
+      transition: _transition,
+      transitionDuration: _transitionDuration,
+    ),
+    GetPage(
+      name: SAVER_PASSWORD,
+      page: () => SaverPasswordScreen(),
       transition: _transition,
       transitionDuration: _transitionDuration,
     ),
