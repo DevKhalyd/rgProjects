@@ -65,7 +65,6 @@ class BottomInputBtnController extends GetxController {
   /// When the user is going left
   bool animatingLeft = false;
 
-  // TODO: Use this one to appear the block widget
   /// If this one is set to true the input will to incres it's size
   /// and show the record widget and the block widget because depends on the same
   /// variable
