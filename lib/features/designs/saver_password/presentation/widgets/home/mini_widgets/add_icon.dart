@@ -8,13 +8,12 @@ class AddIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(2.0),
+      padding: EdgeInsets.all(1.0),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: _color,
-          width: 3
-        )
-      ),
+          border: Border.all(
+        color: _color,
+        width: 2.2,
+      )),
       child: Icon(
         Icons.add,
         color: _color,

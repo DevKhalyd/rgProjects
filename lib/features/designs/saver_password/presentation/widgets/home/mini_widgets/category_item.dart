@@ -14,8 +14,11 @@ class CategoryItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         CardCircleImage(),
-        Space(0.03),
-        TextCustom(label,fontWeight: FontWeight.bold,),
+        Space(0.015),
+        TextCustom(
+          label,
+          fontWeight: FontWeight.bold,
+        ),
       ],
     );
   }

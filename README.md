@@ -11,6 +11,7 @@ TODO: Create a Index of the applications
 
 # WhatsApp
 
+todo: explain the goals in this project.
 
 
 # Author

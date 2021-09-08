@@ -28,9 +28,7 @@ class HeaderHome extends StatelessWidget {
             ),
           ),
         ),
-        Spacer(
-          flex: 2,
-        ),
+        Spacer()
       ],
     );
   }

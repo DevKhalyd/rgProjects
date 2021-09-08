@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rg_projects/core/utils/colors.dart';
 
 import '../../../../../core/widgets/mini_widgets.dart';
 import 'saver_password_home.dart';
@@ -20,6 +21,7 @@ class SaverPasswordScreen extends StatelessWidget {
       ),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: ColorsApp.saverPrimary,
         body: Stack(
           children: [
             SaverPasswordHome(),
