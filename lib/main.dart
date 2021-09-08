@@ -7,7 +7,13 @@ import 'core/utils/routes.dart';
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  //SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  /*
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+      systemNavigationBarIconBrightness: Brightness.light,
+    ));
+   */
   runApp(MyApp());
 }
 
@@ -16,6 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'RG Projects',
+      theme: ThemeData(
+        brightness: Brightness.light,
+      ),
       initialRoute: Routes.INITIAL_ROUTE,
       debugShowCheckedModeBanner: false,
       getPages: Routes.pages,

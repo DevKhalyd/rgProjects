@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rg_projects/core/utils/colors.dart';
 
 class FilterIcon extends StatelessWidget {
   const FilterIcon({Key? key}) : super(key: key);
@@ -6,6 +7,9 @@ class FilterIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      //The backgroundColor
+      borderRadius: BorderRadius.circular(16),
+      color: ColorsApp.saverPrimary,
       child: Center(
         child: Ink(
           decoration: BoxDecoration(

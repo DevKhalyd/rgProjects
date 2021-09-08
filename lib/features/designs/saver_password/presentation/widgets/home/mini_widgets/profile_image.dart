@@ -12,14 +12,13 @@ class ProfileImage extends StatelessWidget {
         padding: const EdgeInsets.all(2.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.red,
-            shape: BoxShape.circle,
-            //TODO: Get a image for this one
-            //image: DecorationImage(image: AssetImage(''))
-          ),
+              color: Colors.red,
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: NetworkImage(
+                      'https://thewaywomenwork.com/wp-content/uploads/2013/10/Polina-Guchsha-Russia-small-951x10246.jpg'))),
         ),
       ),
-      foregroundImage: NetworkImage(''),
     );
   }
 }

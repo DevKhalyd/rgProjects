@@ -30,23 +30,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-class _AppHomeBar extends StatelessWidget {
-  const _AppHomeBar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        color: UI.primaryColor,
-        height: kToolbarHeight,
-        child: Center(
-            child: TextCustom(
-          'Rolando Garcia Portfolio',
-          fontWeight: FontWeight.bold,
-          fontSize: 16.0,
-        )));
-  }
-}

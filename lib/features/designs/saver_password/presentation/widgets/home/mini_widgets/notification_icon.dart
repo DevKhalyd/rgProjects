@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const _side = 8.0;
+const _side = 6.0;
 
 class NotificationIcon extends StatelessWidget {
   const NotificationIcon({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class NotificationIcon extends StatelessWidget {
         ),
         Icon(
           Icons.notifications_none_sharp,
-          color: Colors.white,
+          color: Colors.grey.shade300,
           size: 30.0,
         )
       ],

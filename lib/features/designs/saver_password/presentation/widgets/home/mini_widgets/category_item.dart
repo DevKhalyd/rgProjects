@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/widgets/mini_widgets.dart';
+import '../../../../../../../core/widgets/mini_widgets.dart';
 import 'card_circle_image.dart';
 
 class CategoryItem extends StatelessWidget {
