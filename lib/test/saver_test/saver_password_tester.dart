@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rg_projects/features/designs/saver_password/presentation/widgets/home/mini_widgets/shape_transparent.dart';
-import 'package:rg_projects/test/saver_test/widgets/transform_container.dart';
+
+import '../../features/designs/saver_password/presentation/widgets/home/mini_widgets/shape_transparent.dart';
 
 
 void main() => runApp(MyApp());

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:rg_projects/core/utils/colors.dart';
-import 'package:rg_projects/core/widgets/mini_widgets.dart';
-import 'package:rg_projects/features/designs/saver_password/presentation/widgets/home/mini_widgets/filter_icon.dart';
-import 'package:rg_projects/features/designs/saver_password/presentation/widgets/home/mini_widgets/notification_icon.dart';
-import 'package:rg_projects/features/designs/saver_password/presentation/widgets/home/mini_widgets/profile_image.dart';
+
 import '../../../../../../core/extensions/build_context_ext.dart';
+import '../../../../../../core/utils/colors.dart';
+import '../../../../../../core/widgets/mini_widgets.dart';
+import 'mini_widgets/background_shapes.dart';
+import 'mini_widgets/filter_icon.dart';
+import 'mini_widgets/notification_icon.dart';
+import 'mini_widgets/profile_image.dart';
 
 class HeaderHome extends StatelessWidget {
   const HeaderHome({
@@ -20,10 +22,8 @@ class HeaderHome extends StatelessWidget {
             color: ColorsApp.saverPrimary,
             child: Stack(
               children: [
-                //TODO: Add images container bg
-                // -------------
-                //TODO: Add the items
-                _HeaderHomeContent()
+                BackgroundShapes(),
+                _HeaderHomeContent(),
               ],
             ),
           ),
@@ -64,6 +64,7 @@ class _HeaderHomeContent extends StatelessWidget {
                       'Welcome home',
                       color: Colors.grey.shade300,
                       fontSize: 14,
+                      letterSpacing: 1.5,
                     ),
                     Space(0.01),
                     // TODO: Research for this letter
@@ -71,6 +72,7 @@ class _HeaderHomeContent extends StatelessWidget {
                       'Rolando Garcia',
                       color: Colors.white,
                       fontSize: 24,
+                      fontWeight: FontWeight.w600,
                     ),
                     Space(0.03),
                     Row(
@@ -138,11 +140,16 @@ class _AppBar extends StatelessWidget {
         ),
         child: Row(
           children: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.menu_rounded,
-                color: Colors.grey.shade300,
+            Material(
+              color: Colors.transparent,
+              shape: CircleBorder(),
+              clipBehavior: Clip.hardEdge,
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.menu_rounded,
+                  color: Colors.grey.shade300,
+                ),
               ),
             ),
             Spacer(),
