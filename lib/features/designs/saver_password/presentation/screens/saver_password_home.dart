@@ -21,6 +21,7 @@ class SaverPasswordHome extends StatelessWidget {
 }
 
 const _border = 24.0;
+final _path = 'assets/s_p/';
 
 class _BodyHome extends StatelessWidget {
   const _BodyHome({
@@ -57,10 +58,22 @@ class _BodyHome extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            CategoryItem(label: 'Streaming'),
-                            CategoryItem(label: 'Medsos'),
-                            CategoryItem(label: 'Edtech'),
-                            CategoryItem(label: 'Wallet'),
+                            CategoryItem(
+                              label: 'Streaming',
+                              asset: _path + 'streaming.png',
+                            ),
+                            CategoryItem(
+                              label: 'Medsos',
+                              asset: _path + 'chat.png',
+                            ),
+                            CategoryItem(
+                              label: 'Edtech',
+                              asset: _path + 'edu.png',
+                            ),
+                            CategoryItem(
+                              label: 'Wallet',
+                              asset: _path + 'wallet.png',
+                            ),
                           ],
                         )
                       ],
