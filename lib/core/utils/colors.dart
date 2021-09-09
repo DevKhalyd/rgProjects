@@ -6,4 +6,5 @@ abstract class ColorsApp {
   static const whatsappChatBubble = Color.fromRGBO(225, 255, 199, 1.0);
   // saver app
   static const saverPrimary = Color.fromRGBO(3, 165, 154, 1.0);
+  static const accountItem = Color.fromRGBO(248, 247, 252, 1.0);
 }

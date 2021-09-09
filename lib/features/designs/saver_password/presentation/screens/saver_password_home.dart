@@ -6,6 +6,9 @@ import '../../../../../core/widgets/mini_widgets.dart';
 import '../widgets/home/header_home.dart';
 import '../widgets/home/mini_widgets/slide_icon.dart';
 
+const _border = 24.0;
+final _path = 'assets/s_p/';
+
 class SaverPasswordHome extends StatelessWidget {
   const SaverPasswordHome({Key? key}) : super(key: key);
 
@@ -19,9 +22,6 @@ class SaverPasswordHome extends StatelessWidget {
     );
   }
 }
-
-const _border = 24.0;
-final _path = 'assets/s_p/';
 
 class _BodyHome extends StatelessWidget {
   const _BodyHome({
@@ -38,7 +38,7 @@ class _BodyHome extends StatelessWidget {
             child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.grey.shade100,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(_border),
                     topRight: Radius.circular(_border),

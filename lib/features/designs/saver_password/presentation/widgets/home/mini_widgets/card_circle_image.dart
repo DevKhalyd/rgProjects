@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 const _side = 50.0;
 
 class CardCircleImage extends StatelessWidget {
-  const CardCircleImage({Key? key, required this.asset}) : super(key: key);
+  const CardCircleImage({
+    Key? key,
+    required this.asset,
+    this.side = _side,
+  }) : super(key: key);
 
   final String asset;
+  final double side;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +24,8 @@ class CardCircleImage extends StatelessWidget {
               color: Colors.green,
               shape: BoxShape.circle,
               image: DecorationImage(image: AssetImage(asset))),
-          height: _side,
-          width: _side,
+          height: side,
+          width: side,
         ),
       ),
     );

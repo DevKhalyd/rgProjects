@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../features/designs/saver_password/presentation/widgets/home/mini_widgets/shape_transparent.dart';
-
+import '../../features/designs/saver_password/presentation/widgets/home/mini_widgets/account_item.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,12 +10,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SaverPassword',
       home: Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-          title: Text('SaverPassword Bar'),
-        ),
-        body:ShapeTransparent(),
-      ),
+          backgroundColor: Colors.black,
+          appBar: AppBar(
+            title: Text('SaverPassword Bar'),
+          ),
+          body: Center(
+            child: AccountItem(
+              image: 'spotify',
+            ),
+          )),
     );
   }
 }

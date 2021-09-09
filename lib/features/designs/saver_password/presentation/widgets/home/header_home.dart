@@ -65,7 +65,6 @@ class _HeaderHomeContent extends StatelessWidget {
                       letterSpacing: 1.5,
                     ),
                     Space(0.01),
-                    // TODO: Research for this letter
                     TextCustom(
                       'Rolando Garcia',
                       color: Colors.white,

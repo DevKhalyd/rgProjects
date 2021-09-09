@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rg_projects/core/utils/colors.dart';
 
+import '../../../../../core/utils/colors.dart';
 import '../../../../../core/widgets/mini_widgets.dart';
+import '../widgets/home/slider_bottom_menu.dart';
 import 'saver_password_home.dart';
 import 'saver_password_menu.dart';
-
+  
 /// This widget contains the whole screen for this design, the
 /// menu and the home
 class SaverPasswordScreen extends StatelessWidget {
@@ -25,8 +26,8 @@ class SaverPasswordScreen extends StatelessWidget {
         body: Stack(
           children: [
             SaverPasswordHome(),
+            SliderBottomMenu(),
             SavePasswordMenu(),
-            // TODO: Add the slide menu...
           ],
         ),
       ),
