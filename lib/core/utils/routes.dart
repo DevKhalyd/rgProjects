@@ -6,6 +6,7 @@ import '../../features/clone_features/whatsapp_chat/presentation/bindings/wsp_ch
 import '../../features/clone_features/whatsapp_chat/presentation/screens/whatsapp_camera.dart';
 import '../../features/clone_features/whatsapp_chat/presentation/screens/whatsapp_chat.dart';
 import '../../features/designs/designs_section.dart';
+import '../../features/designs/saver_password/presentation/getX/saver_binding.dart';
 import '../../features/designs/saver_password/presentation/screens/saver_password_screen.dart';
 import '../../features/fancy_widgets/fancy_widgets_section.dart';
 import '../../features/native_services/native_services_section.dart';
@@ -80,10 +81,10 @@ abstract class Routes {
       transitionDuration: _transitionDuration,
     ),
     GetPage(
-      name: SAVER_PASSWORD,
-      page: () => SaverPasswordScreen(),
-      transition: _transition,
-      transitionDuration: _transitionDuration,
-    ),
+        name: SAVER_PASSWORD,
+        page: () => SaverPasswordScreen(),
+        transition: _transition,
+        transitionDuration: _transitionDuration,
+        binding: SaverBinding()),
   ];
 }

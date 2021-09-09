@@ -1,6 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:rg_projects/core/widgets/mini_widgets.dart';
-import '../../../../../../core/extensions/build_context_ext.dart';
+import 'package:get/get.dart';
+
+import '../../../../../../core/utils/logger.dart';
+import '../../../../../../core/widgets/mini_widgets.dart';
+import '../../getX/saver_controller.dart';
 import 'mini_widgets/account_item.dart';
 import 'mini_widgets/slide_icon.dart';
 
@@ -9,43 +14,80 @@ class SliderBottomMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // NOTE: Maybe this one needs another stack
-    return Positioned(
-      bottom: 0,
-      child: Container(
-        width: context.width,
-        // Min: 39.5
-        height: context.height * .39,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(24.0),
-            topRight: Radius.circular(24.0),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Space(0.02),
-                _Slide(),
-                Space(0.04),
-                _TitleSlider('Lattest Accounts'),
-                Space(0.01),
-                AccountItem(image: 'spotify'),
-                AccountItem(image: 'netflix'),
-                _TitleSlider('12 Jan 2021'),
-                AccountItem(image: 'gmail'),
-                AccountItem(image: 'tiktok'),
-                _TitleSlider('11 Jun 2020'),
-                AccountItem(image: 'rename'),
-              ],
-            ),
-          ),
-        ),
+    final top = MediaQuery.of(context).padding.top;
+    return GetBuilder<SaverController>(
+      builder: (c) {
+        final controller = c.controller;
+        return AnimatedBuilder(
+          animation: controller,
+          child: _BodySlider(),
+          builder: (_, child) {
+            final value = controller.value;
+            return Positioned(
+              bottom: 0,
+              child: Container(
+                width: context.width,
+                height: lerpDouble(
+                    context.height * .395, context.height - top, value),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24.0),
+                    topRight: Radius.circular(24.0),
+                  ),
+                ),
+                child: child,
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _BodySlider extends StatelessWidget {
+  const _BodySlider({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: Column(
+        children: [
+          Space(0.02),
+          _Slide(),
+          Space(0.01),
+          _Items(),
+        ],
+      ),
+    );
+  }
+}
+
+class _Items extends StatelessWidget {
+  const _Items({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView(
+        physics: BouncingScrollPhysics(),
+        children: [
+          _TitleSlider('Latest Accounts'),
+          Space(0.01),
+          AccountItem(image: 'spotify'),
+          AccountItem(image: 'netflix'),
+          _TitleSlider('12 Jan 2021'),
+          AccountItem(image: 'gmail'),
+          AccountItem(image: 'tiktok'),
+          _TitleSlider('11 Jun 2020'),
+          AccountItem(image: 'rename'),
+        ],
       ),
     );
   }
@@ -62,7 +104,7 @@ class _TitleSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: .0),
       child: TextCustom(title, fontWeight: FontWeight.bold),
     );
   }
@@ -75,6 +117,15 @@ class _Slide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: SlideIcon());
+    return GetBuilder<SaverController>(
+      builder: (c) {
+        return GestureDetector(
+          onVerticalDragStart: c.onVerticalDragStart,
+          onVerticalDragUpdate: c.onVerticalDragUpdate,
+          onVerticalDragEnd: c.onVerticalDragEnd,
+          child: SlideIcon(),
+        );
+      },
+    );
   }
 }

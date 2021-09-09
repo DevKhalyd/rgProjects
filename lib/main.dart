@@ -16,12 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'RG Projects',
-      home: SaverPasswordScreen(),
       theme: ThemeData(
         brightness: Brightness.light,
       ),
-      //initialRoute: Routes.INITIAL_ROUTE,
-      // getPages: Routes.pages,
+      initialRoute: Routes.INITIAL_ROUTE,
+      getPages: Routes.pages,
       debugShowCheckedModeBanner: false,
     );
   }

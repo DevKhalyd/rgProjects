@@ -21,7 +21,6 @@ class CardCircleImage extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.green,
               shape: BoxShape.circle,
               image: DecorationImage(image: AssetImage(asset))),
           height: side,
