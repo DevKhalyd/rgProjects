@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/features/designs/saver_password/presentation/screens/saver_password_screen.dart';
-
 import 'core/utils/routes.dart';
 
 main() async {

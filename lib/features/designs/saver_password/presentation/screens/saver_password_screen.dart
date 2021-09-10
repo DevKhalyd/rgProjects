@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:rg_projects/features/designs/saver_password/presentation/widgets/home/mini_widgets/add_account_btn.dart';
 import '../../../../../core/utils/durations.dart';
 import '../getX/saver_controller.dart';
 
@@ -54,8 +55,7 @@ class _SaverPasswordScreenState extends State<SaverPasswordScreen>
             SaverPasswordHome(),
             _BluerBottomMenu(),
             SliderBottomMenu(),
-            // TODO: React this button to the changes of the lattest accounts
-            // AddAccountBtn(),
+            AddAccountBtn(),
             SavePasswordMenu(),
           ],
         ),

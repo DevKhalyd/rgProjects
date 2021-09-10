@@ -29,7 +29,7 @@ class SliderBottomMenu extends StatelessWidget {
               bottom: 0,
               child: Container(
                 width: context.width,
-                height:  goingUpLerp ,
+                height: goingUpLerp,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(

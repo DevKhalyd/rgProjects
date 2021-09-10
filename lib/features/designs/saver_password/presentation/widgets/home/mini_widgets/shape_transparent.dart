@@ -39,8 +39,6 @@ class ShapeTransparent extends StatelessWidget {
         .reversed
         .toList();
     return Transform(
-      // TODO: Check what method can improve this animation
-      //alignment: Alignment.topRight,
       alignment: Alignment.bottomCenter,
       transform: Matrix4.identity()
         ..rotateX(angle)

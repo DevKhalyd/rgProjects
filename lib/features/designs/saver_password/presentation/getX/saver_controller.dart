@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/core/utils/logger.dart';
-
-const _zero = 0.0;
 
 class SaverController extends GetxController {
   static SaverController get to => Get.find();
@@ -42,6 +39,7 @@ class SaverController extends GetxController {
     if (globalPositionDY == null) globalPositionDY = globalDY;
   }
 
+  /// End the animation
   onVerticalDragEnd(DragEndDetails _) {
     if (valueController > 0.55) {
       controller.fling(velocity: 1.0);

@@ -13,7 +13,6 @@ class ShapeTransparent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform(
-      // TODO: Check what method can improve this animation
       //alignment: Alignment.topRight,
       // transform: Matrix4.identity(),
       alignment: Alignment.bottomCenter,
