@@ -40,7 +40,7 @@ class SaverController extends GetxController {
   }
 
   /// End the animation
-  onVerticalDragEnd(DragEndDetails _) {
+  onVerticalDragEnd(_) {
     if (valueController > 0.55) {
       controller.fling(velocity: 1.0);
       _isOpenBottomMenu = true;

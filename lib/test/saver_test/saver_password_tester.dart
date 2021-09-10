@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../features/designs/saver_password/presentation/widgets/home/mini_widgets/account_item.dart';
+import '../../features/designs/saver_password/presentation/screens/saver_password_menu.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,13 +11,8 @@ class MyApp extends StatelessWidget {
       title: 'SaverPassword',
       home: Scaffold(
           backgroundColor: Colors.black,
-          appBar: AppBar(
-            title: Text('SaverPassword Bar'),
-          ),
           body: Center(
-            child: AccountItem(
-              image: 'spotify',
-            ),
+            child: SavePasswordMenu(),
           )),
     );
   }

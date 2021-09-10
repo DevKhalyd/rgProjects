@@ -3,12 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:rg_projects/features/designs/saver_password/presentation/widgets/home/mini_widgets/add_account_btn.dart';
-import '../../../../../core/utils/durations.dart';
-import '../getX/saver_controller.dart';
 
 import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/durations.dart';
 import '../../../../../core/widgets/mini_widgets.dart';
+import '../getX/saver_controller.dart';
+import '../getX/saver_menu_controller.dart';
+import '../widgets/home/mini_widgets/add_account_btn.dart';
 import '../widgets/home/slider_bottom_menu.dart';
 import 'saver_password_home.dart';
 import 'saver_password_menu.dart';
@@ -23,19 +24,26 @@ class SaverPasswordScreen extends StatefulWidget {
 }
 
 class _SaverPasswordScreenState extends State<SaverPasswordScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController controller;
+
+  /// The left button menu...
+  late AnimationController menuController;
   @override
   void initState() {
     super.initState();
     controller =
         AnimationController(vsync: this, duration: Durations.defaultAnimation);
     SaverController.to.controller = controller;
+    menuController =
+        AnimationController(vsync: this, duration: Durations.defaultAnimation);
+    SaverMenuController.to.controller = menuController;
   }
 
   @override
   void dispose() {
     controller.dispose();
+    menuController.dispose();
     super.dispose();
   }
 
@@ -56,6 +64,7 @@ class _SaverPasswordScreenState extends State<SaverPasswordScreen>
             _BluerBottomMenu(),
             SliderBottomMenu(),
             AddAccountBtn(),
+            _BluerLeftMenu(),
             SavePasswordMenu(),
           ],
         ),
@@ -77,6 +86,28 @@ class _BluerBottomMenu extends StatelessWidget {
           child: Container(),
           builder: (_, child) {
             final value = lerpDouble(0, 10, c.valueController)!;
+            return BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: value, sigmaY: value),
+              child: child,
+            );
+          });
+    });
+  }
+}
+
+class _BluerLeftMenu extends StatelessWidget {
+  const _BluerLeftMenu({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<SaverMenuController>(builder: (c) {
+      return AnimatedBuilder(
+          animation: c.controller,
+          child: Container(),
+          builder: (_, child) {
+            final value = lerpDouble(0, 10, c.value)!;
             return BackdropFilter(
               filter: ImageFilter.blur(sigmaX: value, sigmaY: value),
               child: child,
