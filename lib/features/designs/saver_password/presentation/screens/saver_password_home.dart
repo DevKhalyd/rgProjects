@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rg_projects/features/designs/saver_password/presentation/widgets/home/mini_widgets/add_icon.dart';
-import 'package:rg_projects/features/designs/saver_password/presentation/widgets/home/mini_widgets/category_item.dart';
 
 import '../../../../../core/widgets/mini_widgets.dart';
 import '../widgets/home/header_home.dart';
-import '../widgets/home/mini_widgets/slide_icon.dart';
+import '../widgets/home/mini_widgets/add_icon.dart';
+import '../widgets/home/mini_widgets/category_item.dart';
 
 const _border = 24.0;
 final _path = 'assets/s_p/';
@@ -51,7 +50,7 @@ class _BodyHome extends StatelessWidget {
                     child: Column(
                       children: [
                         Space(0.02),
-                        SlideIcon(),
+                       // SlideIcon(),
                         Space(0.025),
                         _Title(),
                         Space(0.025),

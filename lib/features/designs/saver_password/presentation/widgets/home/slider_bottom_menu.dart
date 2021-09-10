@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../core/utils/logger.dart';
 import '../../../../../../core/widgets/mini_widgets.dart';
 import '../../getX/saver_controller.dart';
 import 'mini_widgets/account_item.dart';
@@ -18,17 +17,19 @@ class SliderBottomMenu extends StatelessWidget {
     return GetBuilder<SaverController>(
       builder: (c) {
         final controller = c.controller;
+
         return AnimatedBuilder(
           animation: controller,
           child: _BodySlider(),
           builder: (_, child) {
             final value = controller.value;
+            final goingUpLerp =
+                lerpDouble(context.height * .4, context.height - top, value);
             return Positioned(
               bottom: 0,
               child: Container(
                 width: context.width,
-                height: lerpDouble(
-                    context.height * .395, context.height - top, value),
+                height:  goingUpLerp ,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(

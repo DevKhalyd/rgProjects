@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rg_projects/core/utils/logger.dart';
+
+const _zero = 0.0;
 
 class SaverController extends GetxController {
   static SaverController get to => Get.find();
@@ -8,13 +11,41 @@ class SaverController extends GetxController {
 
   AnimationController get controller => _controller!;
 
+  /// Value from .0 to 1.0
+  double get valueController => controller.value;
+
+  /// GlobalPositionDY...
+  double? globalPositionDY;
+
+  bool _isOpenBottomMenu = false;
+
   set controller(AnimationController v) {
     if (_controller == null) _controller = v;
   }
 
-  onVerticalDragUpdate(DragUpdateDetails _) {}
-  
-  onVerticalDragEnd(DragEndDetails _) {}
+  onVerticalDragUpdate(DragUpdateDetails d) {
+    final dy = d.localPosition.dy.abs();
+    // Percentage
+    final percentage = (dy / globalPositionDY!).clamp(0.0, 1.0);
+    if (_isOpenBottomMenu) {
+      controller.value = 1.0 - percentage;
+    } else {
+      controller.value = percentage;
+    }
+  }
 
-  onVerticalDragStart(DragStartDetails _) {}
+  onVerticalDragStart(DragStartDetails d) {
+    final globalDY = d.globalPosition.dy;
+    if (globalPositionDY == null) globalPositionDY = globalDY;
+  }
+
+  onVerticalDragEnd(DragEndDetails _) {
+    if (valueController > 0.55) {
+      controller.fling(velocity: 1.0);
+      _isOpenBottomMenu = true;
+    } else {
+      controller.fling(velocity: -1.0);
+      _isOpenBottomMenu = false;
+    }
+  }
 }

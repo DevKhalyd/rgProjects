@@ -119,8 +119,8 @@ class BottomInputBtnController extends GetxController {
       // Explanation of (globalPositionStartDX * .4):
       // Because this is the global positon and this one is multiplied by the half or less
       // This one gets faster or lower according to the value assig in the widget to animated
-      // For example if we use the context.width * .2 the globalPostion should be lesser than the original
-      // This because is less px to animate.
+      // For example if we use the context.width * .2 the globalPostion should be lesser than 
+      //the original. This because is less px to animate.
       final result = (dx / (globalPositionStartDX * .4)).abs();
       // Reset to the start point
       if (result > 0.95) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rg_projects/core/utils/durations.dart';
-import 'package:rg_projects/features/designs/saver_password/presentation/getX/saver_controller.dart';
+import '../../../../../core/utils/durations.dart';
+import '../getX/saver_controller.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/widgets/mini_widgets.dart';
