@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import '../../../../../core/utils/durations.dart';
 import '../getX/saver_controller.dart';
 
@@ -49,6 +52,7 @@ class _SaverPasswordScreenState extends State<SaverPasswordScreen>
         body: Stack(
           children: [
             SaverPasswordHome(),
+            _BluerBottomMenu(),
             SliderBottomMenu(),
             // TODO: React this button to the changes of the lattest accounts
             // AddAccountBtn(),
@@ -57,5 +61,27 @@ class _SaverPasswordScreenState extends State<SaverPasswordScreen>
         ),
       ),
     );
+  }
+}
+
+class _BluerBottomMenu extends StatelessWidget {
+  const _BluerBottomMenu({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<SaverController>(builder: (c) {
+      return AnimatedBuilder(
+          animation: c.controller,
+          child: Container(),
+          builder: (_, child) {
+            final value = lerpDouble(0, 10, c.valueController)!;
+            return BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: value, sigmaY: value),
+              child: child,
+            );
+          });
+    });
   }
 }

@@ -24,14 +24,17 @@ class SaverController extends GetxController {
   }
 
   onVerticalDragUpdate(DragUpdateDetails d) {
-    final dy = d.localPosition.dy.abs();
+    final globalPositionDYLocal = d.globalPosition.dy;
+
+    if (globalPositionDYLocal > globalPositionDY!) return;
+
+    final localDy = d.localPosition.dy.abs();
     // Percentage
-    final percentage = (dy / globalPositionDY!).clamp(0.0, 1.0);
-    if (_isOpenBottomMenu) {
+    final percentage = (localDy / globalPositionDY!).clamp(0.0, 1.0);
+    if (_isOpenBottomMenu)
       controller.value = 1.0 - percentage;
-    } else {
+    else
       controller.value = percentage;
-    }
   }
 
   onVerticalDragStart(DragStartDetails d) {
