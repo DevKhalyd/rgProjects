@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
+import 'package:rg_projects/features/designs/saver_password/presentation/getX/saver_menu_controller.dart';
 
 import '../../../../../../core/extensions/build_context_ext.dart';
 import '../../../../../../core/utils/colors.dart';
@@ -66,7 +68,7 @@ class _HeaderHomeContent extends StatelessWidget {
                     ),
                     Space(0.01),
                     TextCustom(
-                      'Rolando Garcia',
+                      'Roose Poole',
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
@@ -128,33 +130,35 @@ class _AppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: kToolbarHeight,
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10.0,
-        ),
-        child: Row(
-          children: [
-            Material(
-              color: Colors.transparent,
-              shape: CircleBorder(),
-              clipBehavior: Clip.hardEdge,
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.menu_rounded,
-                  color: Colors.grey.shade300,
+    return GetBuilder<SaverMenuController>(builder: (c) {
+      return Container(
+        height: kToolbarHeight,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10.0,
+          ),
+          child: Row(
+            children: [
+              Material(
+                color: Colors.transparent,
+                shape: CircleBorder(),
+                clipBehavior: Clip.hardEdge,
+                child: IconButton(
+                  onPressed: c.goForwardAnimation,
+                  icon: Icon(
+                    Icons.menu_rounded,
+                    color: Colors.grey.shade300,
+                  ),
                 ),
               ),
-            ),
-            Spacer(),
-            NotificationIcon(),
-            ProfileImage()
-          ],
+              Spacer(),
+              NotificationIcon(),
+              ProfileImage()
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

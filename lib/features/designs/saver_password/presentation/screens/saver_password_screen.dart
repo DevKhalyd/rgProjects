@@ -54,44 +54,40 @@ class _SaverPasswordScreenState extends State<SaverPasswordScreen>
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.light,
         statusBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.light,
       ),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: ColorsApp.saverPrimary,
-        body: Stack(
-          children: [
-            SaverPasswordHome(),
-            _BluerBottomMenu(),
-            SliderBottomMenu(),
-            AddAccountBtn(),
-            _BluerLeftMenu(),
-            SavePasswordMenu(),
-          ],
-        ),
-      ),
+          resizeToAvoidBottomInset: false,
+          backgroundColor: ColorsApp.saverPrimary,
+          body: GetBuilder<SaverMenuController>(
+            builder: (c) => GestureDetector(
+              onHorizontalDragUpdate: c.onHorizontalDragUpdate,
+              onHorizontalDragEnd: c.onHorizontalDragEnd,
+              onHorizontalDragDown: c.onHorizontalDragDown,
+              child: _BodyContent(),
+            ),
+          )),
     );
   }
 }
 
-class _BluerBottomMenu extends StatelessWidget {
-  const _BluerBottomMenu({
+class _BodyContent extends StatelessWidget {
+  const _BodyContent({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SaverController>(builder: (c) {
-      return AnimatedBuilder(
-          animation: c.controller,
-          child: Container(),
-          builder: (_, child) {
-            final value = lerpDouble(0, 10, c.valueController)!;
-            return BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: value, sigmaY: value),
-              child: child,
-            );
-          });
-    });
+    return Stack(
+      children: [
+        SaverPasswordHome(),
+        _BluerBottomMenu(),
+        SliderBottomMenu(),
+        AddAccountBtn(),
+        _BluerLeftMenu(),
+        SavePasswordMenu(),
+      ],
+    );
   }
 }
 
@@ -108,6 +104,31 @@ class _BluerLeftMenu extends StatelessWidget {
           child: Container(),
           builder: (_, child) {
             final value = lerpDouble(0, 10, c.value)!;
+            return BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: value,
+                sigmaY: value,
+              ),
+              child: child,
+            );
+          });
+    });
+  }
+}
+
+class _BluerBottomMenu extends StatelessWidget {
+  const _BluerBottomMenu({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<SaverController>(builder: (c) {
+      return AnimatedBuilder(
+          animation: c.controller,
+          child: Container(),
+          builder: (_, child) {
+            final value = lerpDouble(0, 10, c.valueController)!;
             return BackdropFilter(
               filter: ImageFilter.blur(sigmaX: value, sigmaY: value),
               child: child,

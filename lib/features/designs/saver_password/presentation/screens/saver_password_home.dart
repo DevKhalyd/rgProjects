@@ -50,7 +50,6 @@ class _BodyHome extends StatelessWidget {
                     child: Column(
                       children: [
                         Space(0.02),
-                       // SlideIcon(),
                         Space(0.025),
                         _Title(),
                         Space(0.025),
