@@ -1,3 +1,7 @@
+import 'dart:math';
 
- class Logical {
+final _random = Random();
+
+abstract class Logical {
+  static double generateDouble() => _random.nextDouble();
 }

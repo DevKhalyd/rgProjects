@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:rg_projects/core/utils/logger.dart';
 
 import '../../../../../../core/utils/durations.dart';
 import '../../../../../../core/widgets/mini_widgets.dart';
@@ -32,10 +31,7 @@ class _NumberAnimationState extends State<NumberAnimation> {
     Timer.periodic(Durations.getDurationInMilliseconds(widget.miliseconds),
         (_) {
       int randomNumber = random.nextInt(10);
-
       if (randomNumber <= widget.avoid) return;
-
-      Log.console('Number generated: $randomNumber');
       final pixels = randomNumber * _height;
       controller.animateTo(
         pixels,
