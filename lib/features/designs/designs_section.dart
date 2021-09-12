@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rg_projects/core/utils/routes.dart';
-import 'package:rg_projects/home/widgets/section_button.dart';
 
+import '../../core/utils/routes.dart';
 import '../../home/screens/home_section.dart';
+import '../../home/widgets/section_button.dart';
 
 class DesignsSection extends StatelessWidget {
   const DesignsSection({Key? key}) : super(key: key);
