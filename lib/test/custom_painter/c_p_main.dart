@@ -57,14 +57,16 @@ class __BodyState extends State<_Body> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  final side = 100.0;
+
   @override
   Widget build(BuildContext context) {
     return Center(
         child: CustomPaint(
             painter: _CustomBorderAnimated(animation: controller),
             child: Container(
-              height: 150,
-              width: 150,
+              height: side,
+              width: side,
             )));
   }
 }
@@ -92,6 +94,27 @@ class _CustomBorderAnimated extends CustomPainter {
     final halfHeight = height / 2;
 
     return Path()
+      ..moveTo(width * .45, height * .05)
+      // Curve top
+      ..conicTo(
+        //Curve
+        halfWidth,
+        0,
+        width * .75,
+        //End
+        height * .25,
+        2,
+      )
+      // Right side
+      ..conicTo(size.width, halfHeight, width * .75, height * .75, 2)
+
+      // Curve bottom
+      ..conicTo(halfWidth, height, width * .25, height * .75, 2)
+      // Left side
+      ..conicTo(0, halfHeight, height * .25, width * .25, 2)
+      ..close();
+    /*
+          return Path()
       ..moveTo(height * .25, width * .25)
       // Curve top
       ..conicTo(halfWidth, 0, width * .75, height * .25, 2)
@@ -101,20 +124,32 @@ class _CustomBorderAnimated extends CustomPainter {
       ..conicTo(halfWidth, height, width * .25, height * .75, 2)
       // Left side
       ..conicTo(0, halfHeight, height * .25, width * .25, 2);
+       */
 
-    /*return Path()
+    /* return Path()
+      ..moveTo(halfWidth - 15, 0)
+      ..conicTo(halfWidth - 7, 0, width * .55, height * .1, 2)
+      ..conicTo(width, halfHeight, width * .75, height * .75, 2)
+      ..conicTo(halfWidth, height, width * .25, height * .75, 2)
+      ..conicTo(0, halfHeight, halfWidth - 15, 0, 2);*/
+
+    /* return Path()
       ..moveTo(halfWidth, 0)
       // Right side
-      ..conicTo(size.width, halfHeight, width * .75, height * .75, 2)
+      ..conicTo(width, halfHeight, width * .75, height * .75, 2)
       // Curve bottom
       ..conicTo(halfWidth, height, width * .25, height * .75, 2)
       // Left side
-      ..conicTo(0, halfHeight, halfWidth, 0, 2)
-      // Curve top
-      // ..conicTo(halfWidth, 0, width * .75, height * .25, 2)
-      ..close();*/
-/*
-    return Path()
+      ..conicTo(0, halfHeight, width * .35, height * .15, 2);
+      
+    // Curve top
+    //..conicTo(halfWidth, 0, width * .51, 5, 2);
+
+    // Curve top
+    // ..conicTo(halfWidth, 0, width * .75, height * .25, 2)
+    // ..close()*/
+
+    /* return Path()
       ..moveTo(halfWidth, 0)
       ..quadraticBezierTo(
           size.width * .75, size.height * .01, size.width, halfHeight)
