@@ -51,10 +51,16 @@ class TextCustom extends StatelessWidget {
 }
 
 class CenterText extends StatelessWidget {
-  const CenterText(this.data, {Key? key, this.fontSize}) : super(key: key);
+  const CenterText(
+    this.data, {
+    Key? key,
+    this.fontSize,
+    this.fontWeight,
+  }) : super(key: key);
 
   final String data;
   final double? fontSize;
+  final FontWeight? fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +68,7 @@ class CenterText extends StatelessWidget {
         child: TextCustom(
       data,
       fontSize: fontSize,
+      fontWeight: fontWeight,
     ));
   }
 }

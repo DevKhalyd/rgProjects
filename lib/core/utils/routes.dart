@@ -5,6 +5,7 @@ import '../../features/clone_features/whatsapp_chat/presentation/bindings/camera
 import '../../features/clone_features/whatsapp_chat/presentation/bindings/wsp_chat_binding.dart';
 import '../../features/clone_features/whatsapp_chat/presentation/screens/whatsapp_camera.dart';
 import '../../features/clone_features/whatsapp_chat/presentation/screens/whatsapp_chat.dart';
+import '../../features/designs/credit_app/presentation/screens/activity_screen.dart';
 import '../../features/designs/designs_section.dart';
 import '../../features/designs/saver_password/presentation/getX/saver_binding.dart';
 import '../../features/designs/saver_password/presentation/screens/saver_password_screen.dart';
@@ -32,6 +33,10 @@ abstract class Routes {
 
   // Saver Password
   static const SAVER_PASSWORD = '/saverPassword';
+
+  // TODO: Change this one when use the pageview
+  // Credit Appp
+  static const CREDIT_APP = '/creditApp';
 
   // GetxPages
   static final pages = <GetPage>[
@@ -80,11 +85,20 @@ abstract class Routes {
       transition: _transition,
       transitionDuration: _transitionDuration,
     ),
+    // SAVER
     GetPage(
         name: SAVER_PASSWORD,
         page: () => SaverPasswordScreen(),
         transition: _transition,
         transitionDuration: _transitionDuration,
         binding: SaverBinding()),
+    // Credit App
+    // Change this
+    GetPage(
+      name: CREDIT_APP,
+      page: () => ActivityScreen(),
+      transition: _transition,
+      transitionDuration: _transitionDuration,
+    ),
   ];
 }

@@ -45,7 +45,7 @@ class _NumberAnimationState extends State<NumberAnimation> {
   Widget build(BuildContext context) {
     return Container(
       height: _height,
-      width: 50,
+      width: 30,
       child: AbsorbPointer(
         child: ListView(
           controller: controller,
@@ -55,7 +55,8 @@ class _NumberAnimationState extends State<NumberAnimation> {
               10,
               (index) => CenterText(
                     '$index',
-                    fontSize: 65,
+                    fontSize: 50,
+                    fontWeight: FontWeight.w600,
                   )),
         ),
       ),

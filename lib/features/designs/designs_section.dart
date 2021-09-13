@@ -6,7 +6,6 @@ import '../../home/widgets/section_button.dart';
 
 class DesignsSection extends StatelessWidget {
   const DesignsSection({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return HomeSection(
@@ -16,6 +15,11 @@ class DesignsSection extends StatelessWidget {
           section: 'Saver Password',
           about: 'Menu and main page with animations',
           route: Routes.SAVER_PASSWORD,
+        ),
+        SectionButton(
+          section: 'Credit App',
+          about: 'A hard animations with custom painter and custom path',
+          route: Routes.CREDIT_APP,
         ),
       ],
     );

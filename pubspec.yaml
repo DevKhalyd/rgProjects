@@ -56,6 +56,7 @@ flutter:
   assets:
     - assets/w/images/
     - assets/s_p/
+    - assets/c_a/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

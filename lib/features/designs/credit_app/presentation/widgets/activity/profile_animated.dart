@@ -2,19 +2,26 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rg_projects/core/utils/logical.dart';
+import 'package:rg_projects/core/widgets/mini_widgets.dart';
 
 import '../../../../../../core/utils/durations.dart';
+import '../../../../../../core/utils/logical.dart';
+import 'img_recipients.dart';
 import 'painters/border_custom.dart';
-import 'painters/path_custom.dart';
 
-const _side = 100.0;
 
 class ProfileAnimated extends StatefulWidget {
-  const ProfileAnimated({Key? key, required this.borderColor})
-      : super(key: key);
+  const ProfileAnimated({
+    Key? key,
+    required this.borderColor,
+    required this.asset,
+    required this.name,
+  }) : super(key: key);
 
   final Color borderColor;
+  final String asset;
+  final String name;
+
   @override
   __BodyState createState() => __BodyState();
 }
@@ -29,9 +36,7 @@ class __BodyState extends State<ProfileAnimated>
     controller = AnimationController(
       vsync: this,
       value: .1,
-      duration: Durations.getDurationInMilliseconds(
-        1500,
-      ),
+      duration: Durations.getDurationInMilliseconds(1500),
     );
 
     Timer.periodic(Durations.getDurationInMilliseconds(4500), (_) {
@@ -51,37 +56,23 @@ class __BodyState extends State<ProfileAnimated>
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: controller,
-      child: _Child(),
-      builder: (_, child) {
-        return CustomPaint(
-          painter: CustomBorderAnimated(
-            value: controller.value,
-            borderColor: widget.borderColor,
-          ),
-          child: child,
+      builder: (_, __) {
+        return Column(
+          children: [
+            CustomPaint(
+              painter: CustomBorderAnimated(
+                value: controller.value,
+                borderColor: widget.borderColor,
+              ),
+              child: ImgProfile(asset: widget.asset),
+            ),
+            TextCustom(
+              widget.name,
+              fontWeight: FontWeight.bold,
+            )
+          ],
         );
       },
-    );
-  }
-}
-
-class _Child extends StatelessWidget {
-  const _Child({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: _side,
-      width: _side,
-      padding: EdgeInsets.all(8.0),
-      child: ClipPath(
-        clipper: PathCustom(),
-        child: Container(
-          color: Colors.grey.shade300,
-        ),
-      ),
     );
   }
 }

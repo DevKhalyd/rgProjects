@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../features/designs/credit_app/presentation/widgets/activity/profile_animated.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -18,17 +16,7 @@ class MyApp extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ProfileAnimated(
-                    borderColor: Colors.pink,
-                  ),
-                  ProfileAnimated(
-                    borderColor: Colors.purple,
-                  ),
-                  ProfileAnimated(
-                    borderColor: Colors.green,
-                  ),
-                ],
+                children: [],
               )
             ],
           )),
