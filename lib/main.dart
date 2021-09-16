@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'core/utils/routes.dart';
+import 'features/fancy_widgets/clock/screens/clock_screen.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +18,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
       ),
-      initialRoute: Routes.INITIAL_ROUTE,
-      getPages: Routes.pages,
+      /* initialRoute: Routes.INITIAL_ROUTE,
+      getPages: Routes.pages,*/
+      home: ClockScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

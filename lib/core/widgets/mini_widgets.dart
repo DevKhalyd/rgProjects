@@ -49,6 +49,7 @@ class TextCustom extends StatelessWidget {
         letterSpacing: letterSpacing,
         decoration: decoration,
         foreground: foreground,
+        
       ),
     );
   }

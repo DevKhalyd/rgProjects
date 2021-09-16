@@ -1,11 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:rg_projects/core/utils/durations.dart';
-import 'package:rg_projects/core/utils/logical.dart';
-import 'package:rg_projects/core/widgets/mini_widgets.dart';
 
 import '../../core/extensions/build_context_ext.dart';
+import '../../core/utils/durations.dart';
+import '../../core/utils/logical.dart';
+import '../../core/widgets/mini_widgets.dart';
 // Resources: https://en.wikipedia.org/wiki/Hue
 
 void main() => runApp(MyApp());
@@ -38,7 +38,7 @@ class _Body extends StatefulWidget {
 class __BodyState extends State<_Body> with SingleTickerProviderStateMixin {
   // How to use hex colors
   // 1. Remove the #
-  // 2.. Add the 0xFF(COLOR) then use it
+  // 2. Add the 0xFF(COLOR) then use it
   // https://stackoverflow.com/a/65796763/10942018
   /* Color(0xFF14ffe9),
                       Color(0xFFffeb3b),
