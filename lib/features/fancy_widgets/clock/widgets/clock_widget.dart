@@ -1,14 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:rg_projects/core/utils/logger.dart';
+import 'package:get/get.dart' hide ContextExtensionss;
 
 import '../../../../core/extensions/build_context_ext.dart';
 import '../../../../core/utils/durations.dart';
 import '../../../../core/utils/logical.dart';
-import '../../../../core/widgets/mini_widgets.dart';
+import '../getX/clock_controller.dart';
+import 'text_gradient.dart';
 
-// TODO: Test for the phones
 /// Exposes the parameters to create the clock
 class ClockWidget extends StatefulWidget {
   const ClockWidget({Key? key}) : super(key: key);
@@ -39,18 +39,12 @@ class _ClockWidgetState extends State<ClockWidget>
     final height = context.height;
 
     final heightGreaterThanWidth = height > width + 100;
-
-    Log.console('Width: $width');
-    Log.console('Height: $height');
-
-    // final double fontSize;
-
     return Center(
       child: AnimatedBuilder(
           animation: controller,
           builder: (_, child) {
             final t = controller.value;
-            final Shader linearGradient = LinearGradient(
+            final linearGradient = LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: <Color>[
@@ -61,7 +55,7 @@ class _ClockWidgetState extends State<ClockWidget>
                 HSVColor.fromAHSV(1, Logical.getHue(initial: 300, t: t), 1, 1)
                     .toColor(),
               ],
-            ).createShader(Rect.fromLTWH(0.0, 0.0, 0.0, 0.0));
+            );
 
             final heightHorizontal = height * .3;
             final widthHorizontal = width * .75;
@@ -117,13 +111,16 @@ class _ClockWidgetState extends State<ClockWidget>
                     fit: BoxFit.scaleDown,
                     child: Padding(
                       padding: const EdgeInsets.all(30.0),
-                      child: TextCustom(
-                        '02 : 04 : 55 PM',
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.bold,
-                        color: null,
-                        fontSize: 170,
-                        foreground: Paint()..shader = linearGradient,
+                      child: GetBuilder<ClockController>(
+                        builder: (c) {
+                          return TextGradient(
+                            c.currentTime,
+                            gradient: linearGradient,
+                            fontWeight: FontWeight.bold,
+                            textAlign: TextAlign.center,
+                            fontSize: 170,
+                          );
+                        },
                       ),
                     ),
                   ),
