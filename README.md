@@ -7,29 +7,10 @@ My goal is to understand how the animations and complex designs interact with ea
 
 If you want to see how I implement the Clean Architecture or the MVVM you can see my profile in GitHub to explore all my projects on backend and mobile.
 
-TODO: Create a Index of the applications
-
 # WhatsApp
 
-todo: explain the goals in this project.
-
+The chat's WhatsApp clone. Just with the animations and the native camera.
 
 # Author
 
 Rolando Garcia from Mexico
-
-## Topics to learn in deep
-
-Transform Widget
-
-Hero Animation
-
-Slives like Twitter profile. Relates to Hero Animation
-
-Payment processors like stripe
-
-Background Services
-
-Notifications for IOS and Android more customize
-
-I think with those topics learned I'll be closer to be a senior in Flutter

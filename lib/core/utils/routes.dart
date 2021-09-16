@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:rg_projects/features/fancy_widgets/clock/screens/clock_screen.dart';
 
 import '../../features/clone_features/clone_features_section.dart';
 import '../../features/clone_features/whatsapp_chat/presentation/bindings/camera_binding.dart';
@@ -34,9 +35,11 @@ abstract class Routes {
   // Saver Password
   static const SAVER_PASSWORD = '/saverPassword';
 
-  // TODO: Change this one when use the pageview
   // Credit Appp
   static const CREDIT_APP = '/creditApp';
+
+  // Clock
+  static const CLOCK_ANIMATION = '/clock';
 
   // GetxPages
   static final pages = <GetPage>[
@@ -97,6 +100,12 @@ abstract class Routes {
     GetPage(
       name: CREDIT_APP,
       page: () => ActivityScreen(),
+      transition: _transition,
+      transitionDuration: _transitionDuration,
+    ),
+    GetPage(
+      name: CLOCK_ANIMATION,
+      page: () => ClockScreen(),
       transition: _transition,
       transitionDuration: _transitionDuration,
     ),

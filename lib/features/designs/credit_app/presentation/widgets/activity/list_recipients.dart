@@ -12,14 +12,17 @@ class ListRecipients extends StatelessWidget {
       init: ListRecipientsController(),
       builder: (c) {
         final list = c.recipients;
-        return ListView.builder(
+        return AnimatedList(
+          key: c.listKey,
           controller: c.controller,
           reverse: true,
-          itemExtent: 70,
+          initialItemCount: list.length,
           physics: BouncingScrollPhysics(),
-          itemCount: list.length,
-          itemBuilder: (_, i) {
-            return list[i];
+          itemBuilder: (_, i, a) {
+            return FadeTransition(
+              opacity: a,
+              child: list[i],
+            );
           },
         );
       },

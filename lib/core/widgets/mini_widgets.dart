@@ -15,6 +15,7 @@ class TextCustom extends StatelessWidget {
     this.textAlign,
     this.overflow,
     this.maxLines,
+    this.foreground,
   }) : super(key: key);
 
   final String data;
@@ -22,7 +23,7 @@ class TextCustom extends StatelessWidget {
   final TextAlign? textAlign;
   final double? letterSpacing;
   final FontWeight? fontWeight;
-  final Color color;
+  final Color? color;
 
   // final String fontFamily;
 
@@ -31,6 +32,8 @@ class TextCustom extends StatelessWidget {
   final TextOverflow? overflow;
 
   final int? maxLines;
+
+  final Paint? foreground;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +48,7 @@ class TextCustom extends StatelessWidget {
         color: color,
         letterSpacing: letterSpacing,
         decoration: decoration,
+        foreground: foreground,
       ),
     );
   }
