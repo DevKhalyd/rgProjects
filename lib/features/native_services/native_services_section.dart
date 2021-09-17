@@ -6,6 +6,8 @@ class NativesServicesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomeSection(title: 'Natives Services');
+    return HomeSection(
+      title: 'Natives Services',
+    );
   }
 }
