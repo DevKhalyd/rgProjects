@@ -18,7 +18,8 @@ class WhatsAppCamarera extends StatelessWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.black,
-        systemNavigationBarIconBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light,
+        statusBarColor: Colors.transparent,
       ),
       child: Scaffold(
           backgroundColor: Colors.black,

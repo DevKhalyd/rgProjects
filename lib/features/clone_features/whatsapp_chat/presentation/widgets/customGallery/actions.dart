@@ -65,12 +65,12 @@ class Actions extends StatelessWidget {
                     )),
               ],
             ),
-            Space(0.02),
-            TextCustom(
-              'Hold for video, tap for photo',
-              color: Colors.white,
-            ),
-            Space(0.02),
+            if (!c.isRecording) Space(0.02),
+            if (!c.isRecording)
+              TextCustom(
+                'Hold for video, tap for photo',
+                color: Colors.white,
+              ),
           ],
         );
       },

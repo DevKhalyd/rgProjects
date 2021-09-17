@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
       title: 'RG Projects',
       theme: ThemeData(
         brightness: Brightness.light,
+        //https://stackoverflow.com/a/66918373/10942018
+        appBarTheme:
+            Theme.of(context).appBarTheme.copyWith(brightness: Brightness.dark),
       ),
       initialRoute: Routes.INITIAL_ROUTE,
       getPages: Routes.pages,

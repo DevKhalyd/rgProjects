@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'package:rg_projects/core/widgets/dialogs/info_dialog.dart';
 
+import '../../../../../core/widgets/dialogs/info_dialog.dart';
 import '../../domain/models/asset_gallery.dart';
 import 'slider_gallery_controller.dart';
 
-// TODO: Fix the bottom buton when is pressed and make tranparent the status bar
 /// When the gallery is collapsed this is the controller
 class CustomGalleryController extends GetxController {
   List<AssetGallery> _imagesFromGallery = [];

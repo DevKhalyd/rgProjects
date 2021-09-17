@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -61,6 +62,10 @@ class _WhatsAppChatState extends State<WhatsAppChat>
         return Scaffold(
             appBar: AppBar(
               backgroundColor: UI.acentColor,
+              systemOverlayStyle: SystemUiOverlayStyle(
+                statusBarIconBrightness: Brightness.light,
+                statusBarColor: Colors.green,
+              ),
               title: Row(
                 children: [
                   CircleAvatar(
