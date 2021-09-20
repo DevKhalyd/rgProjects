@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'core/utils/routes.dart';
-import 'features/fancy_widgets/clock/screens/clock_screen.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();

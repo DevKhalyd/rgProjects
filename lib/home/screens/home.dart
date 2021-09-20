@@ -24,6 +24,7 @@ class Home extends StatelessWidget {
                   section: e.section,
                   about: e.about,
                   route: e.route,
+                  useWeb: e.useWeb,
                 ))
             .toList(),
       ),

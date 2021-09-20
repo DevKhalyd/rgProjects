@@ -2,10 +2,10 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:rg_projects/core/utils/colors.dart';
-import 'package:rg_projects/core/utils/durations.dart';
-import 'package:rg_projects/core/widgets/mini_widgets.dart';
 
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/durations.dart';
+import '../../../../../core/widgets/mini_widgets.dart';
 import '../getX/whatsapp_camera_controller.dart';
 import '../widgets/camera/camera_space.dart';
 import '../widgets/customGallery/camera.dart';

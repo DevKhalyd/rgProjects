@@ -23,11 +23,11 @@ abstract class UI {
       route: Routes.CLONE_FEATURES,
     ),
     SectionModel(
-      section: 'Fancy Widgets',
-      about:
-          'Widgets from scratch like a Custom Progress Indicator, Rendering Objects or CustomPainter with Animations',
-      route: Routes.FANCY_WIDGETS,
-    ),
+        section: 'Fancy Widgets',
+        about:
+            'Widgets from scratch like a Custom Progress Indicator, Rendering Objects or CustomPainter with Animations',
+        route: Routes.FANCY_WIDGETS,
+        useWeb: true),
     /* SectionModel(
       section: 'Native Services',
       about:

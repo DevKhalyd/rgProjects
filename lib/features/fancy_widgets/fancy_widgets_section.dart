@@ -16,6 +16,7 @@ class FancyWidgetsSection extends StatelessWidget {
           route: Routes.CLOCK_ANIMATION,
           section: 'Clock',
           about: 'A nice clock to watch the hour',
+          useWeb: true,
         ),
       ],
     );
