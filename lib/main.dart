@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'RG Projects',
+      title: 'Rolando Garcia Projects',
       theme: ThemeData(
         brightness: Brightness.light,
         //https://stackoverflow.com/a/66918373/10942018
