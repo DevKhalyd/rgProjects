@@ -25,6 +25,15 @@ A fancy credit screen design
 
 ![](repo/credit.gif)
 
+
+# Clock
+
+A fancy clock
+
+![](repo/clock.png)
+
+[Click here to watch it](https://rgprojects.netlify.app/#/clock)
+
 # Author
 
 Rolando Garcia from Mexico
