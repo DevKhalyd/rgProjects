@@ -1,4 +1,4 @@
-# rg_projects
+# Rolando Garcia Projects
 
 These are my projects. I try to do complex projects to improve my skills as Flutter Developer.
 
@@ -10,6 +10,20 @@ If you want to see how I implement the Clean Architecture or the MVVM you can se
 # WhatsApp
 
 The chat's WhatsApp clone. Just with the animations and the native camera.
+
+![](repo/wsp.gif)
+
+# Saver
+
+A fancy menu design
+
+![](repo/saver.gif)
+
+# Credit
+
+A fancy credit screen design
+
+![](repo/credit.gif)
 
 # Author
 
