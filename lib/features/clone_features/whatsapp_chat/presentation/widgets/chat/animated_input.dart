@@ -48,7 +48,7 @@ class AnimatedInput extends StatelessWidget {
   }
 }
 
-/// Widget to record the void
+/// Widget to record the voice
 class _RecordVoice extends StatelessWidget {
   const _RecordVoice({Key? key}) : super(key: key);
   @override

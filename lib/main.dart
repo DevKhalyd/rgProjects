@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'core/utils/routes.dart';
 
+// TODO: Creating twitter app
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -15,12 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Rolando Garcia Projects',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        //https://stackoverflow.com/a/66918373/10942018
-        appBarTheme:
-            Theme.of(context).appBarTheme.copyWith(brightness: Brightness.dark),
-      ),
+      theme: ThemeData(brightness: Brightness.light),
       initialRoute: Routes.INITIAL_ROUTE,
       getPages: Routes.pages,
       debugShowCheckedModeBanner: false,

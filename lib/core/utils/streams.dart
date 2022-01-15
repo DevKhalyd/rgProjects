@@ -22,7 +22,7 @@ class HourMinute {
   });
 
   const HourMinute.zero([this.minute = 0, this.second = '00']);
-  
+
   final int minute;
   final String second;
 }
