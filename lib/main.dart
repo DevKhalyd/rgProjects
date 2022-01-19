@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import 'core/utils/routes.dart';
 
-// TODO: Creating twitter app
+// TODO: Fix the wasap status bar
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

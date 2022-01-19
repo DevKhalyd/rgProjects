@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:rg_projects/features/fancy_widgets/clock/screens/clock_screen.dart';
+import '../../features/fancy_widgets/clock/screens/clock_screen.dart';
 
 import '../../features/clone_features/clone_features_section.dart';
 import '../../features/clone_features/whatsapp_chat/presentation/bindings/camera_binding.dart';
@@ -15,7 +15,6 @@ import '../../features/native_services/native_services_section.dart';
 import '../../home/screens/home.dart';
 
 abstract class Routes {
-  // TODO: When in web, create the 404 error page
   static const _transition = Transition.leftToRight;
   static const _transitionDuration = Duration(milliseconds: 175);
 
